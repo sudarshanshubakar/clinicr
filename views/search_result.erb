@@ -1,0 +1,13 @@
+<html>
+<body>
+  <table>
+    <% @result_for_display.each do |result|%>
+    <tr>
+      <td><%=result["name"]%></td>
+      <td><%=result["age"]%></td>
+    </tr>
+    <%end%>
+  </table>
+</body>
+
+</html>
