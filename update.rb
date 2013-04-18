@@ -14,13 +14,11 @@ class Update_visit
     redis.zadd(patient_history_key, weight, history_key)
   end
   
+  private
   def get_history_entry(params)
     params.delete("id")
     history_entry = params.to_s
     history_entry = history_entry.gsub '=>', ':'
-    # history_entry = history_entry.gsub '"', '\"'    
-    puts history_entry
     return history_entry
   end
-  
 end
