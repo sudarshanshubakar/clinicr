@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <form method="post" action="/myClinic/updateHistory">
+      <table>
+      <%
+      @fields_array.each do |field|
+      %>
+        <tr>
+          <td><%=field%></td>
+          <td><input type="textarea" name="<%=field%>"></td>
+        </tr>
+        <%end%>
+     </table>
+      <input type="submit" value="Search">
+    </form>
+  </body>
+</html>

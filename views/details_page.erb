@@ -1,0 +1,20 @@
+<html>
+<body>
+  <table>
+    <%
+    keys = @details_for_display.keys
+    keys.each do |key|
+    %>
+    <tr>
+      <td><%=key %></td>
+      <td><%=@details_for_display[key] %></td>
+    </tr>
+    <%end%>
+  </table>
+
+  <a href="/myClinic/visitHistory?id=<%=@id%>">Show history</a><br/>
+  
+  <a href="/myClinic">Home</a>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<html>
+<body>
+<table>
+<%
+unless @no_history then
+  %>
+  <tr>
+  <%@history_headers.each do |header|%>
+    <th><%=header%></th>
+    <%end%>
+    </tr>
+    <%@visit_history_for_display.each do |history|%>
+      <tr>
+      <%@history_headers.each do |header|%>
+        <td><%=history[header]%></a></td>
+        <%end%>
+      </tr>
+      <%
+    end
+  end
+  %>
+</table>
+<%
+header_string = ""
+@history_headers.each do |header|
+  header_string += header + "!"
+end
+header_string = header_string.chop
+%>
+<a href="/myClinic/getUpdateHistoryForm?id=<%=@id%>&fields=<%=header_string%>">Update history</a><br/>
+<a href="/myClinic">Home</a>
+</body>
+
+</html>
