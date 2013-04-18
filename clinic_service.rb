@@ -2,6 +2,7 @@ require 'sinatra'
 require '/home/sudarshan/work/rubywork/myClinic/search.rb'
 require '/home/sudarshan/work/rubywork/myClinic/details.rb'
 require '/home/sudarshan/work/rubywork/myClinic/visit.rb'
+require '/home/sudarshan/work/rubywork/myClinic/update.rb'
 require 'json'
 
 ######## Routes
