@@ -1,5 +1,6 @@
 <html>
   <body>
+    <h2>This visit</h2>
     <form method="post" action="/myClinic/updateHistory">
       <table>
       <%
@@ -11,7 +12,8 @@
         </tr>
         <%end%>
      </table>
-      <input type="submit" value="Search">
+    <input type="hidden" name="id" value="<%=@id%>">
+      <input type="submit" value="record">
     </form>
   </body>
 </html>

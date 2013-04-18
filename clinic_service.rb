@@ -5,12 +5,19 @@ require '/home/sudarshan/work/rubywork/myClinic/visit.rb'
 require 'json'
 
 ######## Routes
+
+post '/myClinic/updateHistory' do
+  perform_update(params)
+  "done"
+end
+
 get '/myClinic/getSearchForm' do
   erb :search_form
 end
 
 get '/myClinic/getUpdateHistoryForm' do
   fields = params["fields"]
+  @id = params["id"]
   @fields_array = fields.split("!")
   @fields_array.delete("date")
   puts "fields #{fields}"
@@ -50,6 +57,11 @@ end
 
 ######## Helpers
 helpers do
+  
+  def perform_update(params)
+    update_visit = Update_visit.new
+    update_visit.do(params)
+  end
 
   def get_visit_history(id)
     visit_history = Visit.new
