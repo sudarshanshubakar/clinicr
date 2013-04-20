@@ -1,0 +1,37 @@
+#static_area {
+  position:fixed;
+  border-style:solid;
+  border-width:1px;
+  width:98%;
+  height:10%;
+}
+
+#content_area {
+  position:fixed;
+  top:12%;
+  border-style:solid;
+  border-width:1px;
+  width:98%;
+  height:85%;
+}
+
+#search_form {
+  position:relative;
+  left:68%;
+}
+
+.general_table {
+  border-collapse: collapse;
+}
+
+.general_table td, th {
+  border : 1px solid black;
+}
+
+#patient_basic_information_section {
+  position: relative;
+  width: 30%;
+  border: 1px solid;
+  top: 1%;
+  left: 0.5%;
+}

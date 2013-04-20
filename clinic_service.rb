@@ -27,12 +27,24 @@ end
 
 post '/myClinic/search' do
   search_criteria = params[:search_field]
+  # @result_for_display = perform_search(search_criteria)
+
+  @headers = []
+  @no_search_result = false
   @result_for_display = perform_search(search_criteria)
+  if @result_for_display.empty? then
+    @no_search_result = true
+  else
+    @headers = @result_for_display[0].keys
+  end
+  puts "search headers == #{@headers}"
+
   erb :search_result
 end
 
 get '/myClinic' do
-  erb :home
+  # erb :home
+  erb :homepage
 end
 
 get '/myClinic/details' do
@@ -58,7 +70,7 @@ end
 
 ######## Helpers
 helpers do
-  
+
   def perform_update(params)
     update_visit = Update_visit.new
     update_visit.do(params)
@@ -69,13 +81,13 @@ helpers do
     visit_history_result = visit_history.get(id)
     # result = JSON.parse(visit_history_result)
   end
-  
+
   def get_details(id)
     details = Details.new
     details_result = details.get(id)
     result = JSON.parse(details_result)
   end
-  
+
   def perform_search(search_criteria)
     search = Search.new
     search_result = search.search(search_criteria)

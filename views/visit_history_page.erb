@@ -1,6 +1,8 @@
-<html>
-<body>
-<table>
+
+  <div class="section_title">Patient visit history
+  </div>
+  <div id="visit_history">
+<table id="visit_history_table" class="general_table">
 <%
 unless @no_history then
   %>
@@ -20,6 +22,7 @@ unless @no_history then
   end
   %>
 </table>
+</div>
 <%
 header_string = ""
 @history_headers.each do |header|
@@ -29,6 +32,3 @@ header_string = header_string.chop
 %>
 <a href="/myClinic/getUpdateHistoryForm?id=<%=@id%>&fields=<%=header_string%>">Update history</a><br/>
 <a href="/myClinic">Home</a>
-</body>
-
-</html>

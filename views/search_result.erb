@@ -1,15 +1,34 @@
-<html>
-<body>
-  <table>
-    <% @result_for_display.each do |result|%>
-    <tr>
-      <td><a href="/myClinic/details?id=<%= result["id"]%>"><%=result["name"]%></a></td>
-      <td><%=result["age"]%></td>
-    </tr>
-    <%end%>
-  </table>
-  
-  <a href="/myClinic">Home</a>
-</body>
+<div class="section_title">Matches found
+  </div>
+  <br/>
+  <div id="search_result_area">
 
-</html>
+
+
+    <table id="search_result" class="general_table">
+      <%
+      unless @no_search_result then
+      %>
+      <tr>
+        <%@headers.each do |header|%>
+        <th><%=header%></th>
+        <%end%>
+      </tr>
+      <%@result_for_display.each do |result|%>
+      <tr>
+        <%@headers.each do |header|
+          if(header == "name") %>
+            <td id="search_result_hyperlink"><a href="/myClinic/details?id=<%= result["id"]%>"><%=result[header]%></a></td>
+          <%else%>
+            <td><%=result[header]%></a></td>
+          <%end
+          end%>
+      </tr>
+      <%
+        end
+      end
+      %>
+    </table>
+
+
+  </div>

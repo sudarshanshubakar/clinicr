@@ -1,6 +1,8 @@
-<html>
-<body>
-  <table>
+<div id="patient_basic_information_section">
+<div class="section_title">Detailed information
+  </div>
+  <div id="patient_details">
+  <table id="patient_details_table" class="general_table">
     <%
     keys = @details_for_display.keys
     keys.each do |key|
@@ -11,10 +13,11 @@
     </tr>
     <%end%>
   </table>
-
-  <a href="/myClinic/visitHistory?id=<%=@id%>">Show history</a><br/>
-  
-  <a href="/myClinic">Home</a>
-</body>
-
-</html>
+</div>
+<br/><br/>
+<div id="show_history_hyperlink">
+  <a href="/myClinic/visitHistory?id=<%=@id%>">Show history</a>
+</div>
+</div>
+<div id="record_visit_section"></div>
+<div id="visit_history_section"></div>

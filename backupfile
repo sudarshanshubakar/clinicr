@@ -1,0 +1,10 @@
+  <table id="search_result">
+    <% @result_for_display.each do |result|
+      headers = result.keys
+      %>
+    <tr>
+      <td><a href="/myClinic/details?id=<%= result["id"]%>"><%=result["name"]%></a></td>
+      <td><%=result["age"]%></td>
+    </tr>
+    <%end%>
+  </table>
