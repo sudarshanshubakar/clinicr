@@ -30,5 +30,7 @@ header_string = ""
 end
 header_string = header_string.chop
 %>
-<a href="/myClinic/getUpdateHistoryForm?id=<%=@id%>&fields=<%=header_string%>">Update history</a><br/>
-<a href="/myClinic">Home</a>
+<div id="show_new_visit_form">
+<a href="/myClinic/getUpdateHistoryForm?id=<%=@id%>&fields=<%=header_string%>" location="#record_visit_section">Update history</a>
+</div>
+<br/>

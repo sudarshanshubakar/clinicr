@@ -1,19 +1,19 @@
-<html>
-  <body>
-    <h2>This visit</h2>
-    <form method="post" action="/myClinic/updateHistory">
-      <table id="update_history_form">
+<div class="section_title">This visit</div>
+<script type="text/javascript" src="/js/clinicr_search.js"></script>
+<div id="update_form_section">
+  <form method="post" action="/myClinic/updateHistory" location="#update_form" id="update_form" name="update_form">
+    <table id="update_history_form">
       <%
       @fields_array.each do |field|
       %>
-        <tr>
-          <td><%=field%></td>
-          <td><input type="textarea" name="<%=field%>"></td>
-        </tr>
-        <%end%>
-     </table>
+      <tr>
+        <td><%=field%></td>
+        <td><input type="textarea" name="<%=field%>"></td>
+      </tr>
+      <%end%>
+    </table>
     <input type="hidden" name="id" value="<%=@id%>">
-      <input type="submit" value="record">
-    </form>
-  </body>
-</html>
+    <input type="submit" value="record">
+  </form>
+</div>
+<div id="update_result"></div>

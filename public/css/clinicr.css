@@ -35,3 +35,39 @@
   top: 1%;
   left: 0.5%;
 }
+
+#patient_details_table {
+  position: relative;
+  width: 98%;
+  left: 1%;
+}
+
+#visit_history_section {
+  position: absolute;
+  width: 65%;
+  top: 1%;
+  left: 32%;
+  height: 95%;
+  border: 1px solid;
+}
+
+#visit_history_table {
+  position: relative;
+  width: 98%;
+  left: 1%;
+}
+
+#record_visit_section {
+  position: relative;
+  width: 30%;
+  top: 2%;
+  left: 0.5%;
+  border: 1px solid;
+  height: 60%;
+}
+
+#update_history_form {
+  position: relative;
+  width: 98%;
+  left: 1%;
+}
