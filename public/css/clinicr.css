@@ -42,7 +42,13 @@
   left: 1%;
 }
 
+#visit_history {
+  height: 90%;
+}
+
+
 #visit_history_section {
+
   position: absolute;
   width: 65%;
   top: 1%;
@@ -55,6 +61,25 @@
   position: relative;
   width: 98%;
   left: 1%;
+  height: 90%;
+}
+
+#visit_history_table thead {
+  display: block;
+}
+#visit_history_table thead th {
+  width: 100px;
+}
+
+#visit_history_table tbody {
+  display: block;
+  height: 60%;
+  overflow: auto;
+  height: 100%;
+}
+
+#visit_history_table tbody td {
+  width: 100px;
 }
 
 #record_visit_section {

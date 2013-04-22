@@ -6,12 +6,15 @@
 <%
 unless @no_history then
   %>
-  <tr>
-  <%@history_headers.each do |header|%>
-    <th><%=header%></th>
-    <%end%>
+  <thead>
+    <tr>
+    <%@history_headers.each do |header|%>
+      <th><%=header%></th>
+      <%end%>
     </tr>
-    <%@visit_history_for_display.each do |history|%>
+  </thead>
+  <tbody>
+  <%@visit_history_for_display.each do |history|%>
       <tr>
       <%@history_headers.each do |header|%>
         <td><%=history[header]%></a></td>
@@ -21,6 +24,7 @@ unless @no_history then
     end
   end
   %>
+  </tbody>
 </table>
 </div>
 <%
