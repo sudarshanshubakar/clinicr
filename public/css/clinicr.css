@@ -67,19 +67,27 @@
 #visit_history_table thead {
   display: block;
 }
+#visit_history_table thead tr {
+  display: table;
+  width: 98%;
+}
 #visit_history_table thead th {
-  width: 100px;
+  width: 20%;
 }
 
 #visit_history_table tbody {
   display: block;
-  height: 60%;
   overflow: auto;
   height: 100%;
 }
 
+#visit_history_table tbody tr {
+  display: table;
+  width: 100%;
+}
+
 #visit_history_table tbody td {
-  width: 100px;
+  width: 20%;
 }
 
 #record_visit_section {
@@ -96,3 +104,5 @@
   width: 98%;
   left: 1%;
 }
+
+

@@ -1,5 +1,4 @@
-
-  <div class="section_title">Patient visit history
+<div class="section_title">Patient visit history
   </div>
   <div id="visit_history">
 <table id="visit_history_table" class="general_table">
@@ -7,7 +6,7 @@
 unless @no_history then
   %>
   <thead>
-    <tr>
+    <tr id="header_row">
     <%@history_headers.each do |header|%>
       <th><%=header%></th>
       <%end%>

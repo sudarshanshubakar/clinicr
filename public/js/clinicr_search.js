@@ -3,7 +3,7 @@ $(document).ready(function() {
   $("#search").submit(function(submitEvent) {
     submitEvent.preventDefault();
     var url = $(this).attr("action");
-    alert(url);
+    // alert(url);
     var formValues = $(this).serialize();
     postAndAddToContent(url, formValues);
   });
