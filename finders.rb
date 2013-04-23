@@ -15,7 +15,9 @@ module Detail_finder
     matching_values = []
     matching_keys.each do |key|
       value = @redis.hget("patient:details", key)
-      matching_values << value
+      hash_result = JSON.parse(value)
+      hash_result["id"] = key
+      matching_values << hash_result
     end
     return matching_values
   end
@@ -29,7 +31,9 @@ module Reference_finder
     matching_keys.each do |key|
       patient_id = @redis.hget("patient:reference", key)
       details = @redis.hget("patient:details", patient_id)
-      matching_values << details
+      hash_result = JSON.parse(details)
+      hash_result["id"] = patient_id
+      matching_values << hash_result
     end
     return matching_values
   end

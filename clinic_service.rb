@@ -3,9 +3,20 @@ require_relative 'search.rb'
 require_relative 'visit.rb'
 require_relative 'update.rb'
 require_relative 'details.rb'
+require_relative 'add.rb'
 require 'json'
 
 ######## Routes
+
+get '/myClinic/getAddPatientForm' do
+  @fields_array = get_add_form_fields
+  erb :add_patient_form
+end
+
+post '/myClinic/addPatient' do
+  id = perform_add_patient(params)
+  "#{id}"
+end
 
 post '/myClinic/updateHistory' do
   perform_update(params)
@@ -70,7 +81,16 @@ end
 
 ######## Helpers
 helpers do
+  
+  def get_add_form_fields
+    form_fields = ["Name", "Age", "Contact"]
+  end
 
+  def perform_add_patient(params)
+    add_patient = Add_patient.new
+    add_patient.do(params)
+  end
+  
   def perform_update(params)
     update_visit = Update_visit.new
     update_visit.do(params)
@@ -94,8 +114,8 @@ helpers do
     result_for_display = []
     if (search_result != nil)
       search_result.each do |result|
-        hash_result = JSON.parse(result)
-        result_for_display << hash_result
+        # hash_result = JSON.parse(result)
+        result_for_display << result
       end
     end
     return result_for_display

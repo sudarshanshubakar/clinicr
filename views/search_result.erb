@@ -2,9 +2,6 @@
   </div>
   <br/>
   <div id="search_result_area">
-
-
-
     <table id="search_result" class="general_table">
       <%
       unless @no_search_result then
@@ -17,7 +14,7 @@
       <%@result_for_display.each do |result|%>
       <tr>
         <%@headers.each do |header|
-          if(header == "name") %>
+          if(header == "name"||header == "Name") %>
             <td id="search_result_hyperlink"><a href="/myClinic/details?id=<%= result["id"]%>"><%=result[header]%></a></td>
           <%else%>
             <td><%=result[header]%></a></td>
@@ -29,6 +26,4 @@
       end
       %>
     </table>
-
-
   </div>

@@ -104,5 +104,11 @@
   width: 98%;
   left: 1%;
 }
+#links {
+  position: relative;
+  left: 60%;
+  top: 30%;
+}
+
 
 
