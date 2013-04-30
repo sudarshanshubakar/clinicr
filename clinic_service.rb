@@ -4,6 +4,7 @@ require_relative 'visit.rb'
 require_relative 'update.rb'
 require_relative 'details.rb'
 require_relative 'add.rb'
+require_relative 'configuration.rb'
 require 'json'
 
 ######## Routes
@@ -66,24 +67,27 @@ end
 
 get '/myClinic/visitHistory' do
   @id = params[:id]
-  @history_headers = []
+  @history_headers = get_history_headers
   @no_history = false
   @visit_history_for_display = get_visit_history(@id)
   if @visit_history_for_display.empty? then
     @no_history = true
-  else
-    @history_headers = @visit_history_for_display[0].keys
   end
+  puts "no history == #{@no_history}"
   puts "history headers == #{@history_headers}"
   erb :visit_history_page
 end
 
 
 ######## Helpers
-helpers do
+helpers Configuration do
+  
+  def get_history_headers
+    history_headers = find_history_fields
+  end
   
   def get_add_form_fields
-    form_fields = ["Name", "Age", "Contact"]
+    form_fields = find_add_form_fields
   end
 
   def perform_add_patient(params)
