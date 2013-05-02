@@ -70,9 +70,9 @@ get '/myClinic/visitHistory' do
   @history_headers = get_history_headers
   @no_history = false
   @visit_history_for_display = get_visit_history(@id)
-  if @visit_history_for_display.empty? then
-    @no_history = true
-  end
+  # if @visit_history_for_display.empty? then
+  #   @no_history = true
+  # end
   puts "no history == #{@no_history}"
   puts "history headers == #{@history_headers}"
   erb :visit_history_page
@@ -96,7 +96,7 @@ helpers Configuration do
   end
   
   def perform_update(params)
-    update_visit = Update_visit.new
+    update_visit = Update_history.new
     update_visit.do(params)
   end
 

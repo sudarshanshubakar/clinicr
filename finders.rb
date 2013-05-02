@@ -15,6 +15,7 @@ module Detail_finder
     matching_values = []
     matching_keys.each do |key|
       value = @redis.hget("patient:details", key)
+      puts "#{key} === #{value}"
       hash_result = JSON.parse(value)
       hash_result["id"] = key
       matching_values << hash_result

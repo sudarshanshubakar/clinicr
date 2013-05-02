@@ -14,7 +14,7 @@ class Test_Update_visit < MiniTest::Unit::TestCase
     params["prescription"] = "test_prescription"
     params["notes"] = "test_notes"
     params["id"] = test_id
-    update_visit = Update_visit.new
+    update_visit = Update_history.new
     update_visit.do(params)
 
     visit = Visit.new

@@ -1,48 +1,38 @@
-require 'redis'
+require_relative 'history.rb'
+require_relative 'update.rb'
+require_relative 'database.rb'
+require_relative 'autogenerator.rb'
+
 class Add_patient
   
   def initialize
-    @redis = Redis.new
+    @auto_gen = Auto_generator.new
+    @db = Database.new
   end
   
   def do(params)
-    id = generate_id
-    details_entry = get_details_entry(params)
-    name = params["Name"]
-    contact = params["Contact"]
-    @redis.hset("patient:details", id, details_entry)
-    @redis.hset("patient:reference", name, id)
-    @redis.hset("patient:reference", contact, id)
+    id = @auto_gen.generate_id
     
-    date = Time.now.strftime("%d-%b-%Y %I.%M%p")
-    history_key = "visit_history:#{id}:#{date}"
-    history_entry = "Added patient. First visit details follow."
-    @redis.set(history_key, history_entry)
+    @db.add_patient id, params
     
-    patient_history_key = "visit_history:#{id}"
-    weight = @redis.zcount(patient_history_key, "-inf", "+inf") + 1
-    @redis.zadd(patient_history_key, weight, history_key)
+    history_entry = generate_history_entry id
     
-    # 
-    # 
-    # patient_history_key = "visit_history:#{id}"
-    # weight = @redis.zcount(patient_history_key, "-inf", "+inf") + 1
-    # @redis.zadd(patient_history_key, weight, "Added patient. First visit details follow.")
-    return id
-  end
-  
-  def generate_id
-    cur_value = @redis.get("id_gen:patient:current_value")
-    id = cur_value.to_i + 1
-    @redis.set("id_gen:patient:current_value", id)
+    update_history history_entry
+
     return id
   end
   
   private
-  def get_details_entry(params)
-    details_entry = params.to_s
-    details_entry = details_entry.gsub '=>', ':'
-    return details_entry
+  def generate_history_entry(id)
+    history_entry = Hash.new
+    history_entry["id"] = id
+    history_entry["notes"] = "Added patient. First visit details follow."
+    return history_entry
+  end
+  
+  def update_history history_entry
+    update_hist = Update_history.new
+    update_hist.do history_entry
   end
   
 end
