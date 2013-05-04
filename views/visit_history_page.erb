@@ -16,7 +16,7 @@ unless @no_history then
   <%@visit_history_for_display.each do |history|%>
       <tr>
       <%@history_headers.each do |header|%>
-        <td><%=history[header]%></a></td>
+        <td><%=history.fetch_entry_value(header)%></a></td>
         <%end%>
       </tr>
       <%

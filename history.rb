@@ -33,4 +33,14 @@ class History_converter
     result += "}"
     return result
   end
+  
+  def json_to_history(json_string)
+    hash_history = JSON.parse(json_string)
+    history_keys = hash_history.keys
+    history = History.new
+    history_keys.each do |history_key|
+      history.set_entry(history_key, hash_history[history_key])
+    end
+    return history
+  end
 end

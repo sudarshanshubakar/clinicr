@@ -26,7 +26,7 @@ class Add_patient
   def generate_history_entry(id)
     history_entry = Hash.new
     history_entry["id"] = id
-    history_entry["notes"] = "Added patient. First visit details follow."
+    history_entry["notes"] = "Added patient. First visit."
     return history_entry
   end
   

@@ -1,33 +1,25 @@
 require 'redis'
+require_relative 'database.rb'
+require_relative 'history.rb'
 class Visit
 
+  def initialize
+    @db = Database.new
+  end
+
   def get(id)
-    redis = Redis.new
-    history_references = redis.zrevrange("visit_history:#{id}", 0, -1)
+    history_entries_db = @db.get_visit_history(id)
     history_entries = []
-    puts "#{history_references}"
-    history_references.each do |hist_ref_id|
-      date = hist_ref_id.split(":")[2]
-      history_value = redis.get(hist_ref_id)
-      if (valid_json? history_value)
-        hash_history = JSON.parse(history_value)
-        hash_history["date"] = date
-        history_entries << hash_history
-      else
-        history = Hash.new
-        history["date"] = date
-        history["Start"] = history_value
-      end
+    history_conv = History_converter.new
+    history_entries_db.each do |history_entry_db|
+      history_entry_db_values = history_entry_db.split("||")
+      history_date = history_entry_db_values[0]
+      history_json = history_entry_db_values[1]
+      history = history_conv.json_to_history(history_json)
+      history.set_entry("date", history_date)
+      history_entries << history
     end
 
     return history_entries
   end
-
-  def valid_json?(json_string)
-    JSON.parse(json_string)
-    return true
-  rescue JSON::ParserError
-    return false
-  end
-
 end
