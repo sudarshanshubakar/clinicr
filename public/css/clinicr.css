@@ -1,35 +1,69 @@
 #static_area {
   position:fixed;
   border-style:solid;
-  border-width:1px;
+  border-width:0.15em;
   width:98%;
-  height:10%;
+  height:5%;
+  border-color: blue;
+  border-radius: 0.5em;
 }
 
 #content_area {
   position:fixed;
-  top:12%;
-  border-style:solid;
-  border-width:1px;
+  top:7.5%;
+  /*border-style:solid;
+  border-width:0.15em;
+  border-color: blue;
+  border-radius: 0.5em;*/
   width:98%;
-  height:85%;
+  height:90%;
 }
 
 #search_form {
-  position:relative;
-  left:68%;
+  position:absolute;
+  left:70%;
+}
+#search_form input {
+  padding: 0;
+  margin:0;
+}
+
+#links {
+  position: absolute;
+  margin-left:2%;
+}
+
+.static_area_content {
+  top: 20%;
 }
 
 .general_table {
   border-collapse: collapse;
 }
 
+.borderless_table {
+  border-collapse: collapse;
+  border:none;
+}
+
 .general_table td, th {
   border : 1px solid black;
 }
 
+.rounded_bordered_elements {
+  border-style:solid;
+  border-width:0.15em;
+  border-color: blue;
+  border-radius: 0.5em;
+}
+
+.section_title {
+  text-align: center;
+  text-decoration: underline;
+}
+
 #patient_basic_information_section {
-  position: relative;
+  position: absolute;
   width: 30%;
   border: 1px solid;
   top: 1%;
@@ -50,10 +84,10 @@
 #visit_history_section {
 
   position: absolute;
-  width: 65%;
+  width: 69%;
   top: 1%;
-  left: 32%;
-  height: 95%;
+  left: 31%;
+  height: 98%;
   border: 1px solid;
 }
 
@@ -83,7 +117,7 @@
 
 #visit_history_table tbody tr {
   display: table;
-  width: 100%;
+  width: 98%;
 }
 
 #visit_history_table tbody td {
@@ -91,12 +125,12 @@
 }
 
 #record_visit_section {
-  position: relative;
+  position: absolute;
   width: 30%;
-  top: 2%;
+  top: 29%;
   left: 0.5%;
   border: 1px solid;
-  height: 60%;
+  height: 70%;
 }
 
 #update_history_form {
@@ -104,11 +138,7 @@
   width: 98%;
   left: 1%;
 }
-#links {
-  position: relative;
-  left: 60%;
-  top: 30%;
-}
+
 
 
 
