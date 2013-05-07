@@ -1,19 +1,12 @@
-require 'redis'
-require 'json'
-require_relative 'finders.rb'
+require_relative 'database.rb'
 
 class Search
- include Detail_finder, Reference_finder
   def initialize
-    @redis = Redis.new
+    @db = Database.new
   end
 
   def search(criteria_string)
-    result = find_details(criteria_string)# get_result_from_details(criteria_string)
-    if (result.empty?)
-      result = find_reference(criteria_string)
-    end
-    puts "RESULT == #{result}"
+    result = @db.find_patient(criteria_string)
     return result
   end
 end

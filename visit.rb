@@ -1,4 +1,3 @@
-require 'redis'
 require_relative 'database.rb'
 require_relative 'history.rb'
 class Visit

@@ -1,9 +1,11 @@
-require 'redis'
+require_relative 'database.rb'
 
 class Details
+  def initialize
+    @db = Database.new
+  end
+  
   def get(id)
-    redis = Redis.new
-    details = redis.hget("patient:details", id)
-    return details
+    details = @db.get_patient_details(id)
   end
 end

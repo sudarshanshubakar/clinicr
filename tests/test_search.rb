@@ -7,25 +7,34 @@ class Test_search < MiniTest::Unit::TestCase
 
   def test_search_id
     criteria_value = "000001"
-    perform_search_test(criteria_value)
+    search_result = perform_search_test(criteria_value)
+    sample_result = search_result[0]["name"]
+    assert_equal("myname", sample_result)
   end
 
   def test_search_phone
     criteria_value = "90110"
-    perform_search_test(criteria_value)
+    search_result = perform_search_test(criteria_value)
+    sample_result = search_result[0]["Name"]
+    assert_equal("Sudarshan S", sample_result)
   end
 
   def test_search_name
     criteria_value = "myname"
-    perform_search_test(criteria_value)
+    search_result = perform_search_test(criteria_value)
+    sample_result = search_result[0]["name"]
+    assert_equal(criteria_value, sample_result)
   end
 
   def perform_search_test(criteria_value)
     search = Search.new
     search_result = search.search(criteria_value)
-    parsed_result = JSON.parse(search_result[0])
-    sample_result = parsed_result["name"]
-    assert_equal("myname", sample_result)
+    # # parsed_result = JSON.parse(search_result[0])
+    # sample_result = search_result[0]["name"]
+    # if (sample_result == nil)
+    #   sample_result = search_result[0]["Name"]
+    # end
+    # assert_equal("myname", sample_result)
   end
 
 

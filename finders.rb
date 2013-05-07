@@ -1,5 +1,3 @@
-require 'redis'
-
 module Finder
   def get_matching_keys(location, criteria)
     details_keys = @redis.hkeys("patient:#{location}")
@@ -10,6 +8,7 @@ end
 
 module Detail_finder 
   include Finder
+
   def find_details(criteria_string)
     matching_keys = get_matching_keys("details", criteria_string)
     matching_values = []
