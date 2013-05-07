@@ -4,7 +4,7 @@ require_relative 'visit.rb'
 require_relative 'update.rb'
 require_relative 'details.rb'
 require_relative 'add.rb'
-require_relative 'configuration.rb'
+require_relative 'database/factory.rb'
 require 'json'
 
 ######## Routes
@@ -80,14 +80,14 @@ end
 
 
 ######## Helpers
-helpers Configuration do
+helpers Config_factory do
   
   def get_history_headers
-    history_headers = find_history_fields
+    history_headers = config_instance.find_history_fields
   end
   
   def get_add_form_fields
-    form_fields = find_add_form_fields
+    form_fields = config_instance.find_add_form_fields
   end
 
   def perform_add_patient(params)
