@@ -23,10 +23,10 @@ class Test_Update_visit < MiniTest::Unit::TestCase
     # parsed_result = JSON.parse(result[0])
     unless result.empty? then
       parsed_result = result[0]
-      problem = parsed_result["problem"]
-      diagnosis = parsed_result["diagnosis"]
-      prescription = parsed_result["prescription"]
-      notes = parsed_result["notes"]
+      problem = parsed_result.fetch_entry_value("problem")
+      diagnosis = parsed_result.fetch_entry_value("diagnosis")
+      prescription = parsed_result.fetch_entry_value("prescription")
+      notes = parsed_result.fetch_entry_value("notes")
       assert_equal("test_problem", problem)
       assert_equal("test_diagnosis", diagnosis)
       assert_equal("test_prescription", prescription)

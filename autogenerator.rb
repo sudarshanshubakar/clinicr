@@ -1,4 +1,4 @@
-require_relative 'database.rb'
+require_relative 'database/database.rb'
 
 class Auto_generator
   def generate_id

@@ -1,5 +1,5 @@
 require 'redis'
-require_relative 'finders.rb'
+require_relative 'helpers/finders.rb'
 class Database
    include Detail_finder, Reference_finder
   def initialize
