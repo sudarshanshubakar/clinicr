@@ -1,6 +1,6 @@
 require 'redis'
 require_relative 'helpers/finders.rb'
-class Database
+class Database_redis
    include Detail_finder, Reference_finder
   def initialize
     @redis = Redis.new

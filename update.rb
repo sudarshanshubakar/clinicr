@@ -1,8 +1,8 @@
-require_relative 'database/database.rb'
+require_relative 'database/factory.rb'
 class Update_history
-
+  include DB_factory
   def initialize
-    @db = Database.new
+    @db = db_instance
   end
   
   def do(params)

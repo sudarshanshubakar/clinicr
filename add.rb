@@ -1,13 +1,13 @@
 require_relative 'history.rb'
 require_relative 'update.rb'
-require_relative 'database/database.rb'
+require_relative 'database/factory.rb'
 require_relative 'autogenerator.rb'
 
 class Add_patient
-  
+  include DB_factory
   def initialize
     @auto_gen = Auto_generator.new
-    @db = Database.new
+    @db = db_instance
   end
   
   def do(params)

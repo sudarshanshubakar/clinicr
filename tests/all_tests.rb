@@ -1,0 +1,7 @@
+require 'minitest/autorun'
+require './test_add_patient.rb'
+require './test_details.rb'
+require './test_history.rb'
+require './test_search.rb'
+require './test_update_visit.rb'
+require './test_visit.rb'

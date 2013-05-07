@@ -1,8 +1,9 @@
-require_relative 'database/database.rb'
+require_relative 'database/factory.rb'
 
 class Auto_generator
+  include DB_factory
   def generate_id
-    db = Database.new
+    db = db_instance
     db.generate_id
   end
 end

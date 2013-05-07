@@ -1,9 +1,10 @@
-require_relative 'database/database.rb'
+require_relative 'database/factory.rb'
 require_relative 'history.rb'
 class Visit
+  include DB_factory
 
   def initialize
-    @db = Database.new
+    @db = db_instance
   end
 
   def get(id)
