@@ -1,10 +1,24 @@
+  // $(document).on("load", "#search_result_area", function() {
+  //   alert("here");
+  //   // this.stickyTableHeaders();
+  // });
+
 $(document).ready(function() {
+  
+
 
   $("#search").submit(function(submitEvent) {
     submitEvent.preventDefault();
     var url = $(this).attr("action");
     // alert(url);
     var formValues = $(this).serialize();
+    // $.post(url, formValues,
+    //   function(returnHTML) {
+    //     addToLocation(returnHTML,"#content_area");
+    //     var table = $(document).find("#search_result");
+    //     table.stickyTableHeaders();
+    //     alert(table);
+    //   });
     postAndAddToContent(url, formValues);
   });
 

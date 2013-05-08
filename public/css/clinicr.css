@@ -39,6 +39,10 @@
 
 .general_table {
   border-collapse: collapse;
+  position: relative;
+  width: 98%;
+  left: 1%;
+  height: 90%;
 }
 
 .borderless_table {
@@ -98,29 +102,29 @@
   height: 90%;
 }
 
-#visit_history_table thead {
+.scrollable_table thead {
   display: block;
 }
-#visit_history_table thead tr {
+.scrollable_table thead tr {
   display: table;
-  width: 98%;
+  width: 98.6%;
 }
-#visit_history_table thead th {
+.scrollable_table thead th {
   width: 20%;
 }
 
-#visit_history_table tbody {
+.scrollable_table tbody {
   display: block;
   overflow: auto;
   height: 100%;
 }
 
-#visit_history_table tbody tr {
+.scrollable_table tbody tr {
   display: table;
-  width: 98%;
+  width: 99.8%;
 }
 
-#visit_history_table tbody td {
+.scrollable_table tbody td {
   width: 20%;
 }
 
@@ -138,6 +142,8 @@
   width: 98%;
   left: 1%;
 }
+
+
 
 
 

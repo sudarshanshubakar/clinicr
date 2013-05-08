@@ -2,7 +2,8 @@
   </div>
   <br/>
   <div id="search_result_area">
-    <table id="search_result" class="general_table">
+    <table id="search_result" class="general_table scrollable_table">
+      <thead>
       <%
       unless @no_search_result then
       %>
@@ -11,11 +12,13 @@
         <th><%=header%></th>
         <%end%>
       </tr>
+    </thead>
+    <tbody>
       <%@result_for_display.each do |result|%>
       <tr>
         <%@headers.each do |header|
           if(header == "name"||header == "Name") %>
-            <td id="search_result_hyperlink"><a href="/myClinic/details?id=<%= result["id"]%>"><%=result[header]%></a></td>
+            <td id="search_result_hyperlink"><a href="/myClinic/details?id=<%= result["id"]%>"><%=result[header.downcase]%></a></td>
           <%else%>
             <td><%=result[header]%></a></td>
           <%end
@@ -25,5 +28,6 @@
         end
       end
       %>
+    </tbody>
     </table>
   </div>
