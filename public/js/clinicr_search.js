@@ -68,6 +68,13 @@ $(document).ready(function() {
     var location = $(this).attr("location");
     getAndAddToLocation(url, location);
   });
+  
+  $('body').on('click', '#details_hyperlinks a',function(event){
+    event.preventDefault();
+    var url = $(this).attr("href");
+    var location = $(this).attr("location");
+    getAndAddToLocation(url, location);
+  });
 
   $('body').on('click', '#show_new_visit_form a',function(event){
     event.preventDefault();

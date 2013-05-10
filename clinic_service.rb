@@ -9,6 +9,13 @@ require 'json'
 
 ######## Routes
 
+get '/myClinic/getUpdatePatientDetailsForm' do
+  @id = params[:id]
+  @details_for_display = get_details(@id)
+  @fields_array = get_update_form_fields
+  erb :update_patient_details_form  
+end
+
 get '/myClinic/getAddPatientForm' do
   @fields_array = get_add_form_fields
   erb :add_patient_form
@@ -81,6 +88,10 @@ end
 
 ######## Helpers
 helpers Config_factory do
+  
+  def get_update_form_fields
+    form_fields = get_add_form_fields
+  end
   
   def get_history_headers
     history_headers = config_instance.find_history_fields

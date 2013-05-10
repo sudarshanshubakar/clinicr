@@ -1,0 +1,17 @@
+<div class="section_title">Update details</div>
+<script type="text/javascript" src="/js/clinicr_search.js"></script>
+<div id="update_patient_details_form_section">
+  <form method="post" action="/myClinic/updatePatient" location="#update_patient_details_form" id="update_patient_details_form" name="update_patient_details_form">
+    <table id="update_patient_details_form_table">
+      <%
+      @fields_array.each do |field|
+      %>
+      <tr>
+        <td><%=field%></td>
+        <td><input type="textarea" name="<%=field%>" value="<%=@details_for_display[field]%>"></td>
+      </tr>
+      <%end%>
+    </table>
+    <input type="submit" value="Update patient">
+  </form>
+</div>
