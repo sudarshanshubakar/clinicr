@@ -67,6 +67,9 @@ $(document).ready(function() {
     var url = $(this).attr("href");
     var location = $(this).attr("location");
     getAndAddToLocation(url, location);
+    // var loc = $('body').find(location);
+    // alert(loc);
+    // $(loc).css('display','block');
   });
   
   $('body').on('click', '#details_hyperlinks a',function(event){
@@ -106,6 +109,7 @@ $(document).ready(function() {
       function addToLocation(html, location) {
         var result_location = $(document).find(location);
         $(result_location).html(html);
+        $(result_location).css("display", "block");
       }
 
     });

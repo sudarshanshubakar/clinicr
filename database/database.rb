@@ -1,25 +1,31 @@
 require 'redis'
 require_relative 'helpers/finders.rb'
 class Database_redis
-   include Detail_finder, Reference_finder
+  include Detail_finder, Reference_finder
   def initialize
     @redis = Redis.new
   end
+
+  def update_patient(id, details_hash)
+    puts "ID = #{id}"
+    puts "details = #{details_hash}"
+    update_patient_details(id, details_hash)
+  end
   
-def find_patient(criteria)
-      result = find_details(criteria)# get_result_from_details(criteria_string)
+  def find_patient(criteria)
+    result = find_details(criteria)# get_result_from_details(criteria_string)
     if (result.empty?)
       result = find_reference(criteria)
     end
     puts "RESULT == #{result}"
     return result
-end
-    
-  
-  
+  end
+
+
+
   def get_patient_details(id)
     details = @redis.hget("patient:details", id)
-    return details    
+    return details
   end
 
   def get_visit_history(id)
@@ -29,12 +35,16 @@ end
   end
 
   def add_patient(id, details_hash)
+    update_patient_details(id, details_hash)
+  end
+  
+  def update_patient_details(id, details_hash)
     details_entry = hash_to_json_string(details_hash)
-    name = details_hash["Name"]
-    contact = details_hash["Contact"]
+    name = details_hash["name"]
+    contact = details_hash["contact"]
     @redis.hset("patient:details", id, details_entry)
     @redis.hset("patient:reference", name, id)
-    @redis.hset("patient:reference", contact, id)
+    @redis.hset("patient:reference", contact, id)    
   end
 
   def add_history_entry(id, timestamp, history_entry)

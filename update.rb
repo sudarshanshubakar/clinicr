@@ -1,4 +1,21 @@
 require_relative 'database/factory.rb'
+
+class Update_patient
+  include DB_factory
+  def initialize
+    @db = db_instance
+  end
+  
+  def do(params)
+    id = params['id']
+    params.delete("id")
+    @db.update_patient(id, params)
+  end
+  
+end
+
+
+
 class Update_history
   include DB_factory
   def initialize

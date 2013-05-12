@@ -9,6 +9,10 @@ require 'json'
 
 ######## Routes
 
+post '/myClinic/updatePatient' do
+  perform_update_patient(params)
+end
+
 get '/myClinic/getUpdatePatientDetailsForm' do
   @id = params[:id]
   @details_for_display = get_details(@id)
@@ -88,6 +92,11 @@ end
 
 ######## Helpers
 helpers Config_factory do
+  
+  def perform_update_patient(params)
+    update_patient = Update_patient.new
+    update_patient.do(params)
+  end
   
   def get_update_form_fields
     form_fields = get_add_form_fields
