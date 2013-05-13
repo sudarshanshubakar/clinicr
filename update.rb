@@ -10,6 +10,7 @@ class Update_patient
     id = params['id']
     params.delete("id")
     @db.update_patient(id, params)
+    "#{id}"
   end
   
 end

@@ -48,6 +48,19 @@ $(document).ready(function() {
       getAndAddToLocation(details_url, "#content_area");
     });
   });
+  
+  $("#update_patient_details_form").submit(function(submitEvent) {
+    submitEvent.preventDefault();
+    var url = $(this).attr("action");
+    var formValues = $(this).serialize();
+    var id = "";
+    $.post(url, formValues, function(returnHTML) {
+      id = returnHTML;
+      details_url = "/myClinic/details?id="+id;
+      // alert(details_url)
+      getAndAddToLocation(details_url, "#content_area");
+    });
+  });
 
   $('body').on('click', '#links a',function(event){
     event.preventDefault();
@@ -67,9 +80,12 @@ $(document).ready(function() {
     var url = $(this).attr("href");
     var location = $(this).attr("location");
     getAndAddToLocation(url, location);
-    // var loc = $('body').find(location);
-    // alert(loc);
-    // $(loc).css('display','block');
+  });
+  
+  $('body').on('click', '#cancel_update_patient_details' ,function(event){
+    event.preventDefault();
+    var url = $(this).attr("href");
+    getAndAddToLocation(url, "#content_area");
   });
   
   $('body').on('click', '#details_hyperlinks a',function(event){

@@ -59,7 +59,7 @@ post '/myClinic/search' do
   if @result_for_display.empty? then
     @no_search_result = true
   else
-    @headers = @result_for_display[0].keys
+    @headers = get_search_result_headers
   end
   puts "search headers == #{@headers}"
 
@@ -100,6 +100,10 @@ helpers Config_factory do
   def perform_update_patient(params)
     update_patient = Update_patient.new
     update_patient.do(params)
+  end
+  
+  def get_search_result_headers
+    config_instance.find_search_result_headers
   end
   
   def get_details_keys
