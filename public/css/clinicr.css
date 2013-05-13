@@ -18,7 +18,7 @@ body {
 
 #content_area {
   position:fixed;
-  top:7.5%;
+  top:7%;
   /*border-style:solid;
   border-width:0.15em;
   border-color: blue;
@@ -30,9 +30,17 @@ body {
 #search_form {
   position:absolute;
   left:70%;
+  width:30%;
 }
-#search_form input {
+
+#search_field {
   padding: 0;
+  margin:0;
+  border-radius: 0.5em;
+  width:80%;
+}
+
+#search_button {
   margin:0;
 }
 
@@ -66,11 +74,23 @@ body {
   border : 1px solid black;
 }
 
+.general_table td {
+  border-top: none;
+}
+
 .rounded_bordered_elements {
-  border-style:solid;
+/*  border-style:solid;
   border-width:0.15em;
-  border-color: blue;
+  border-color: blue;*/
   border-radius: 0.5em;
+  background-color: beige;
+}
+
+.sub_section_title {
+  text-align: center;
+  text-decoration: underline;
+  margin-top:2%;
+  margin-bottom:2%;
 }
 
 .section_title {
@@ -81,8 +101,6 @@ body {
 #patient_basic_information_section {
   position: absolute;
   width: 30%;
-  border: 1px solid;
-  top: 1%;
   left: 0.5%;
 }
 
@@ -93,17 +111,16 @@ body {
 }
 
 #visit_history {
-  height: 90%;
+  height: 80%;
 }
 
 
 #visit_history_section {
   position: absolute;
   width: 69%;
-  top: 1%;
   left: 31%;
-  height: 98%;
-  border: 1px solid;
+  height: 100%;
+  /*border: 1px solid;*/
   display: none;
 }
 
@@ -119,7 +136,7 @@ body {
 }
 .scrollable_table thead tr {
   display: table;
-  width: 98.6%;
+  width: 100%;
 }
 .scrollable_table thead th {
   width: 20%;
@@ -127,13 +144,13 @@ body {
 
 .scrollable_table tbody {
   display: block;
-  overflow: auto;
+  /*overflow: auto;*/
   height: 100%;
 }
 
 .scrollable_table tbody tr {
   display: table;
-  width: 99.8%;
+  width: 100%;
 }
 
 .scrollable_table tbody td {
@@ -143,10 +160,10 @@ body {
 #record_visit_section {
   position: absolute;
   width: 30%;
-  top: 29%;
+  top: 32%;
   left: 0.5%;
-  border: 1px solid;
-  height: 70%;
+  /*border: 1px solid;*/
+  height: 71%;
   display: none;
 }
 
@@ -154,6 +171,20 @@ body {
   position: relative;
   width: 98%;
   left: 1%;
+}
+
+.hyperlinks {
+ margin-left: 2%; 
+}
+
+#add_patient_form_holder {
+  position: absolute;
+  width: 30%;
+  height: 31%; 
+}
+
+#add_patient_form_section {
+  margin-left: 1%;
 }
 
 

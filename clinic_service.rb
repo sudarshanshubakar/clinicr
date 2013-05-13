@@ -40,11 +40,12 @@ get '/myClinic/getSearchForm' do
 end
 
 get '/myClinic/getUpdateHistoryForm' do
-  fields = params["fields"]
+  # fields = params["fields"]
   @id = params["id"]
-  @fields_array = fields.split("!")
-  @fields_array.delete("date")
-  puts "fields #{fields}"
+  # @fields_array = fields.split("!")
+  # @fields_array.delete("date")
+  @fields_array = get_history_headers
+  puts "fields #{@fields_array}"
   erb :update_history_form
 end
 

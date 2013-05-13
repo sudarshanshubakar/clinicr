@@ -1,17 +1,19 @@
-<div class="section_title">Add</div>
-<script type="text/javascript" src="/js/clinicr_search.js"></script>
-<div id="add_patient_form_section">
-  <form method="post" action="/myClinic/addPatient" location="#add_patient_form" id="add_patient_form" name="add_patient_form">
-    <table id="add_patient_form_table">
-      <%
-      @fields_array.each do |field|
-      %>
-      <tr>
-        <td><%=field%></td>
-        <td><input type="textarea" name="<%=field%>"></td>
-      </tr>
-      <%end%>
-    </table>
-    <input type="submit" value="Add patient">
-  </form>
+<div id="add_patient_form_holder" class="rounded_bordered_elements">
+  <div class="sub_section_title">Add</div>
+  <script type="text/javascript" src="/js/clinicr_search.js"></script>
+  <div id="add_patient_form_section" >
+    <form method="post" action="/myClinic/addPatient" location="#add_patient_form" id="add_patient_form" name="add_patient_form">
+      <table id="add_patient_form_table">
+        <%
+        @fields_array.each do |field|
+        %>
+        <tr>
+          <td><%=field%></td>
+          <td><input type="textarea" name="<%=field%>"></td>
+        </tr>
+        <%end%>
+      </table>
+      <input type="submit" value="Add patient">
+    </form>
+  </div>
 </div>
