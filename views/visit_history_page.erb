@@ -18,8 +18,8 @@
       <tbody>
       <%@visit_history_for_display.each do |history|%>
           <tr>
-          <%@history_headers.each do |header|%>
-            <td><%=history.fetch_entry_value(header)%></a></td>
+          <%@history_keys.each do |key|%>
+            <td><%=history.fetch_entry_value(key)%></a></td>
             <%end%>
           </tr>
           <%

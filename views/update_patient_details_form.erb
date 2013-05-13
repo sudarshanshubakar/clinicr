@@ -4,15 +4,16 @@
   <form method="post" action="/myClinic/updatePatient" location="#update_patient_details_form" id="update_patient_details_form" name="update_patient_details_form">
     <table id="update_patient_details_form_table">
       <%
-      @fields_array.each do |field|
+      @details_keys.each do |key|
       %>
       <tr>
-        <td><%=field%></td>
-        <td><input type="textarea" name="<%=field%>" value="<%=@details_for_display[field]%>"></td>
+        <td><%=@details_labels[@details_keys.index(key)] %></td>
+        <td><input type="textarea" name="<%=key%>" value="<%=@details_for_display[key]%>"></td>
       </tr>
       <%end%>
     </table>
     <input type="hidden" name="id" value="<%=@id%>">
     <input type="submit" value="Update patient">
+    <a href="/myClinic/details?id=<%=@id%>" id="cancel_update_patient_details" location="">Cancel</a>
   </form>
 </div>

@@ -4,11 +4,11 @@
   <form method="post" action="/myClinic/updateHistory" location="#update_form" id="update_form" name="update_form">
     <table id="update_history_form">
       <%
-      @fields_array.each do |field|
+      @fields_array_display.each do |field|
       %>
       <tr>
         <td><%=field%></td>
-        <td><input type="textarea" name="<%=field%>"></td>
+        <td><input type="textarea" name="<%=@fields_array_actual[@fields_array_display.index(field)]%>"></td>
       </tr>
       <%end%>
     </table>

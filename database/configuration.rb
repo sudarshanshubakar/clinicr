@@ -17,5 +17,9 @@ class Configuration_redis
   def get_all_from_range(range_name)
     @red.lrange(range_name, 0, -1)
   end
+  
+  def find_patient_details_labels
+    labels = get_all_from_range("patient_details_form:fields")
+  end
 
 end

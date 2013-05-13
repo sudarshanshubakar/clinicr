@@ -16,7 +16,8 @@ end
 get '/myClinic/getUpdatePatientDetailsForm' do
   @id = params[:id]
   @details_for_display = get_details(@id)
-  @fields_array = get_update_form_fields
+  @details_labels = get_details_view_labels
+  @details_keys = get_details_keys
   erb :update_patient_details_form  
 end
 
@@ -40,11 +41,10 @@ get '/myClinic/getSearchForm' do
 end
 
 get '/myClinic/getUpdateHistoryForm' do
-  # fields = params["fields"]
   @id = params["id"]
-  # @fields_array = fields.split("!")
-  # @fields_array.delete("date")
-  @fields_array = get_history_headers
+  @fields_array_display = get_history_headers
+  @fields_array_actual = get_history_keys
+  @fields_array_display.delete("Date")
   puts "fields #{@fields_array}"
   erb :update_history_form
 end
@@ -74,12 +74,15 @@ end
 get '/myClinic/details' do
   @id = params[:id]
   @details_for_display = get_details(@id)
+  @details_labels = get_details_view_labels
+  @details_keys = get_details_keys
   erb :details_page
 end
 
 get '/myClinic/visitHistory' do
   @id = params[:id]
   @history_headers = get_history_headers
+  @history_keys = get_history_keys
   @no_history = false
   @visit_history_for_display = get_visit_history(@id)
   # if @visit_history_for_display.empty? then
@@ -99,13 +102,45 @@ helpers Config_factory do
     update_patient.do(params)
   end
   
+  def get_details_keys
+    get_details_conf(0)
+  end
+  
+  def get_details_view_labels
+    get_details_conf(1)
+  end
+  
+  
+  def get_details_conf(index)
+    labels = config_instance.find_patient_details_labels
+    display_keys = []
+    labels.each do |label|
+      display_keys << label.split(":")[index]
+    end
+    return display_keys
+  end
+  
   def get_update_form_fields
     form_fields = get_add_form_fields
   end
   
   def get_history_headers
-    history_headers = config_instance.find_history_fields
+    get_histrory_conf(1)
   end
+  
+  def get_histrory_conf(index)
+    visit_history_fields = config_instance.find_history_fields
+    headers = []
+    visit_history_fields.each do |visit_history_field|
+      headers << visit_history_field.split(":")[index]
+    end
+    return headers
+  end
+  
+  
+  def get_history_keys
+    get_histrory_conf(0)
+  end  
   
   def get_add_form_fields
     form_fields = config_instance.find_add_form_fields

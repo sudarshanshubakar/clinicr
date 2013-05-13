@@ -1,2 +1,3 @@
 rpush add_patient_form:fields name age contact notes
 rpush visit_history:fields problem diagnosis prescription notes date
+rpush patient_details_form:fields Name Age Contact Notes

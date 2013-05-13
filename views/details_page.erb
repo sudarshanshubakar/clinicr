@@ -4,11 +4,10 @@
   <div id="patient_details" >
   <table id="patient_details_table" class="borderless_table">
     <%
-    keys = @details_for_display.keys
-    keys.each do |key|
+    @details_keys.each do |key|
     %>
     <tr>
-      <td><%=key %></td>
+      <td><%=@details_labels[@details_keys.index(key)] %></td>
       <td><%=@details_for_display[key] %></td>
     </tr>
     <%end%>
