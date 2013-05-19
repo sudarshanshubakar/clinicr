@@ -23,12 +23,12 @@ class Update_history
     @db = db_instance
   end
   
-  def do(params)
+  def do(user_id, params)
     id = params["id"]
     date = Time.now.strftime("%d-%b-%Y %I.%M%p")
 
     history_entry = get_history_entry(params)
-    @db.add_history_entry(id, date, history_entry)
+    @db.add_history_entry(user_id, id, date, history_entry)
 
   end
 

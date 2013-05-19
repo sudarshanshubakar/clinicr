@@ -6,7 +6,7 @@ class Details
     @db = db_instance
   end
   
-  def get(id)
-    details = @db.get_patient_details(id)
+  def get(user_id, patient_id)
+    details = @db.get_patient_details(user_id, patient_id)
   end
 end

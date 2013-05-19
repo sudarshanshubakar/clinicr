@@ -10,14 +10,14 @@ class Add_patient
     @db = db_instance
   end
   
-  def do(params)
-    id = @auto_gen.generate_id
+  def do(user_id, params)
+    id = @auto_gen.generate_id(user_id)
     
-    @db.add_patient id, params
+    @db.add_patient user_id, id, params
     
     history_entry = generate_history_entry id
     
-    update_history history_entry
+    update_history user_id, history_entry
 
     return id
   end
@@ -30,9 +30,9 @@ class Add_patient
     return history_entry
   end
   
-  def update_history history_entry
+  def update_history user_id, history_entry
     update_hist = Update_history.new
-    update_hist.do history_entry
+    update_hist.do user_id, history_entry
   end
   
 end

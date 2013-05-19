@@ -2,14 +2,14 @@
   <div class="sub_section_title">Add</div>
   <script type="text/javascript" src="/js/clinicr_search.js"></script>
   <div id="add_patient_form_section" >
-    <form method="post" action="/myClinic/addPatient" location="#add_patient_form" id="add_patient_form" name="add_patient_form">
+    <form method="post" action="/addPatient/doAddPatient" location="#add_patient_form" id="add_patient_form" name="add_patient_form">
       <table id="add_patient_form_table">
         <%
-        @fields_array.each do |field|
+        @fields_array_actual.each do |field_name|
         %>
         <tr>
-          <td><%=field%></td>
-          <td><input type="textarea" name="<%=field%>"></td>
+          <td><%=@fields_array_display[@fields_array_actual.index(field_name)]%></td>
+          <td><input type="textarea" name="<%=field_name%>"></td>
         </tr>
         <%end%>
       </table>

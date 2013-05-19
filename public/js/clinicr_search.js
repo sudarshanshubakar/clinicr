@@ -43,7 +43,7 @@ $(document).ready(function() {
     var id = "";
     $.post(url, formValues, function(returnHTML) {
       id = returnHTML;
-      details_url = "/myClinic/details?id="+id;
+      details_url = "/details/getDetails?id="+id;
       // alert(details_url)
       getAndAddToLocation(details_url, "#content_area");
     });
