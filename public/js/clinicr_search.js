@@ -32,7 +32,7 @@ $(document).ready(function() {
     var formValues = $(this).serialize();
     // alert(formValues);
     postAndAddToLocation(url, formValues, location);
-    visit_url = "/myClinic/visitHistory?id="+id;
+    visit_url = "/visitHistory/getVisitHistory?id="+id;
     getAndAddToLocation(visit_url, "#visit_history_section");
   });
 
