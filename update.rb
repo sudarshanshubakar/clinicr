@@ -27,13 +27,13 @@ class Update_history
     id = params["id"]
     date = Time.now.strftime("%d-%b-%Y %I.%M%p")
 
-    history_entry = get_history_entry(params)
+    history_entry = form_history_entry(params)
     @db.add_history_entry(user_id, id, date, history_entry)
 
   end
 
   private
-  def get_history_entry(params)
+  def form_history_entry(params)
     params.delete("id")
     history_entry = params.to_s
     history_entry = history_entry.gsub '=>', ':'

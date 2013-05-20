@@ -7,8 +7,8 @@ class Visit
     @db = db_instance
   end
 
-  def get(id)
-    history_entries_db = @db.get_visit_history(id)
+  def get(user_id, id)
+    history_entries_db = @db.get_visit_history(user_id, id)
     history_entries = []
     history_conv = History_converter.new
     history_entries_db.each do |history_entry_db|

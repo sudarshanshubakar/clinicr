@@ -9,7 +9,7 @@ class Configuration_redis
     return fields
   end
 
-  def find_history_fields
+  def find_history_fields(user_id)
     fields = get_all_from_range("#{user_id}:visit_history:fields")
     return fields
   end
