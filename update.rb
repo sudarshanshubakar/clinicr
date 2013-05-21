@@ -6,11 +6,11 @@ class Update_patient
     @db = db_instance
   end
   
-  def do(params)
-    id = params['id']
+  def do(user_id, params)
+    patient_id = params['id']
     params.delete("id")
-    @db.update_patient(id, params)
-    "#{id}"
+    @db.update_patient(user_id, patient_id, params)
+    "#{patient_id}"
   end
   
 end
