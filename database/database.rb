@@ -15,6 +15,7 @@ class Database_redis
   
   def find_patient(user_id, criteria)
     result = find_details(user_id, criteria)# get_result_from_details(criteria_string)
+    puts "result details = #{result}"
     if (result.empty?)
       result = find_reference(user_id, criteria)
     end

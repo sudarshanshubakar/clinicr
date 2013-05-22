@@ -18,7 +18,7 @@
       <tr>
         <%@headers.keys.each do |header|
           if(header == "name") %>
-            <td id="search_result_hyperlink"><a href="/myClinic/details?id=<%= result["id"]%>"><%=result[header.downcase]%></a></td>
+            <td id="search_result_hyperlink"><a href="/details/getDetails?id=<%= result["id"]%>"><%=result[header.downcase]%></a></td>
           <%else%>
             <td><%=result[header]%></a></td>
           <%end

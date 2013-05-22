@@ -22,7 +22,7 @@ class Configuration_redis
     labels = get_all_from_range("#{user_id}:patient_details_form:fields")
   end
   
-  def find_search_result_headers
+  def find_search_result_headers(user_id)
     header_keys = @red.hkeys("#{user_id}:patient_search_result:fields")
     result_hash = Hash.new
     header_keys.each do |header_key|
