@@ -1,6 +1,6 @@
 require_relative 'history.rb'
 require_relative 'update.rb'
-require_relative 'database/factory.rb'
+require_relative '../database/factory.rb'
 require_relative 'autogenerator.rb'
 
 class Add_patient

@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__),'..', 'clinicr_server.rb')
-require File.join(File.dirname(__FILE__),'..', 'add.rb')
+require File.join(File.dirname(__FILE__),'../model', 'add.rb')
 require File.join(File.dirname(__FILE__),'../database', 'factory.rb')
 
 class Add_patient_routes < Clinicr_base

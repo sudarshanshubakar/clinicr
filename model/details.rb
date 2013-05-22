@@ -1,4 +1,4 @@
-require_relative 'database/factory.rb'
+require_relative '../database/factory.rb'
 
 class Details
   include DB_factory

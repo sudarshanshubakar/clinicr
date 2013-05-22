@@ -1,4 +1,4 @@
-require_relative 'database/factory.rb'
+require_relative '../database/factory.rb'
 
 class Update_patient
   include DB_factory

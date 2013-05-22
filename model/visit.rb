@@ -1,4 +1,4 @@
-require_relative 'database/factory.rb'
+require_relative '../database/factory.rb'
 require_relative 'history.rb'
 class Visit
   include DB_factory

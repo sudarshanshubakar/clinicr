@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__),'..', 'clinicr_server.rb')
-require File.join(File.dirname(__FILE__),'..', 'details.rb')
-require File.join(File.dirname(__FILE__),'..', 'update.rb')
+require File.join(File.dirname(__FILE__),'../model', 'details.rb')
+require File.join(File.dirname(__FILE__),'../model', 'update.rb')
 require File.join(File.dirname(__FILE__),'../database', 'factory.rb')
 require 'json'
 
