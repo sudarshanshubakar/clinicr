@@ -8,7 +8,7 @@
       %>
       <tr>
         <td><%=@details_labels[@details_keys.index(key)] %></td>
-        <td><input type="textarea" name="<%=key%>" value="<%=@details_for_display[key]%>"></td>
+        <td><input name="<%=key%>" value="<%=@details_for_display[key]%>"></td>
       </tr>
       <%end%>
     </table>

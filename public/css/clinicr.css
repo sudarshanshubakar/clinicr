@@ -39,11 +39,14 @@ body {
   border-radius: 0.5em;
   width:80%;
   height: 2em;
+  vertical-align: middle;
+  margin-top:1.5%;
 }
 
 #search_button {
   margin-top:1.5%;
   width:8%;
+  vertical-align: middle;
 }
 
 #links {
