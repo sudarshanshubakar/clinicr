@@ -5,6 +5,11 @@ require File.join(File.dirname(__FILE__),'../database', 'factory.rb')
 class Search_patient_routes < Clinicr_base
   include Config_factory
 
+  before do
+    puts "BEFORE in Search_patient_routes begin"
+    puts "BEFORE in Search_patient_routes end"
+  end
+  
   post '/performSearch' do
     user_id = "test_id"
     search_criteria = params[:search_field]
