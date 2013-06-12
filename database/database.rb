@@ -6,6 +6,17 @@ class Database_redis
     @redis = Redis.new
   end
 
+  def user_collection_exists?
+    result = true
+    user_collection = @redis.keys("global:user_info")
+    puts "user_collection -> #{user_collection}"
+    puts "user_collection.empty? -> #{user_collection.empty?}"
+    if user_collection.empty? then
+      result = false
+    end
+    return result
+  end
+  
   def update_patient(user_id, patient_id, details_hash)
     puts "patient_id = #{patient_id}"
     puts "user_id = #{user_id}"

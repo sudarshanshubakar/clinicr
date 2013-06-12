@@ -5,33 +5,22 @@ require 'awesome_print'
 class Clinicr_base < Sinatra::Base
 
   before do
-    puts "BEFORE in Clinicr_base begin"
     action = request.path_info
-    puts "session -> #{session}"
-    session[:par_1] = "test"
-    puts "action -> #{action}"
-    puts "session[:access_token] -> #{session[:access_token]}"
-    puts "session -> #{session}"
-    ap session
-    puts "session keys -> #{session.keys}"
-    puts "session id -> #{session.id}"
 
+    print_debug_info("BEFORE in Clinicr_base")
+    
     unless bypass_login_check? action then
-      puts "access token => #{session[:access_token].inspect}"
       unless session[:access_token] == nil then
         if session[:access_token].expired? then
           redirect "/login_page"
         end
       else
-        puts "access token == nill"
         redirect "/login_page"
       end
     end
-    puts "BEFORE in Clinicr_base end"
   end
 
   get '/login_page' do
-    # @session_id = params[:session_id]
     erb :login_page
   end
 
@@ -40,6 +29,21 @@ class Clinicr_base < Sinatra::Base
   end
   
   private
+  
+  def print_debug_info(context)
+    puts "#{context} session -> #{session}"
+    # session[:par_1] = "test"
+    puts "#{context} action -> #{request.path_info}"
+    puts "#{context} session[:access_token] -> #{session[:access_token].inspect}"
+    puts "#{context} session -> #{session}"
+    ap session
+    unless session[:access_token] == nil
+      puts "#{context} session[:access_token].expired? -> #{session[:access_token].expired?}"
+    end
+    puts "#{context} session keys -> #{session.keys}"
+    puts "#{context} session id -> #{session.id}"
+  end
+  
   def bypass_login_check?(action)
     bypass_routes = ['/login_page', '/loginWithGoogle', '/oauth2callback']
     bypass_routes.each do |bypass_route|

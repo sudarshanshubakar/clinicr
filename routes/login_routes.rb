@@ -1,7 +1,34 @@
 require File.join(File.dirname(__FILE__),'..', 'clinicr_server.rb')
+require File.join(File.dirname(__FILE__),'../model', 'user_management.rb')
 require 'oauth2'
 
 class Login_routes < Clinicr_base
+
+  get '/loginWithGoogle' do
+    # puts "BEGIN /login/loginWithGoogle session id -> #{session.id}"
+    redirect_url = client.auth_code.authorize_url(:redirect_uri => redirect_uri,:scope => SCOPES,:access_type => "offline")
+    # puts "/login/loginWithGoogle redirect_URL -> #{redirect_url}"
+    redirect redirect_url
+  end
+
+
+  get '/oauth2callback' do
+    access_token = client.auth_code.get_token(params[:code], :redirect_uri => redirect_uri)
+    # session[:access_token_string] = access_token.token
+    session[:access_token] = access_token
+
+    print_debug("INSIDE /oauth2callback", session)
+
+    user_info = access_token.get('https://www.googleapis.com/oauth2/v3/userinfo').parsed
+    
+    user_admin = User_admin.new
+    
+    user = user_admin.process_user user_info
+    session[:user] = user
+    
+    # @email = access_token.get('https://www.googleapis.com/oauth2/v3/userinfo').parsed['name']
+    redirect '/'
+  end
 
   # Scopes are space separated strings
   SCOPES = [
@@ -13,41 +40,18 @@ class Login_routes < Clinicr_base
     G_API_CLIENT = "153497584587-0r1n36j0i62d9udkgfbt4m2rorvnvgd4.apps.googleusercontent.com"
     G_API_SECRET = "ScDXfSw3IrZ7OjcmCzD8oO8N"
 
-    get '/loginWithGoogle' do
-      # session_id = params[:session_id]
-      # puts "/login/loginWithGoogle pool[session_id] -> #{$pool[session_id]}"
-      # @session = session
-      puts "BEGIN /login/loginWithGoogle session id -> #{session.id}"
-      redirect_url = client.auth_code.authorize_url(:redirect_uri => redirect_uri,:scope => SCOPES,:access_type => "offline")
-      puts "/login/loginWithGoogle redirect_URL -> #{redirect_url}"
-      redirect redirect_url
-    end
-
-
-    get '/oauth2callback' do
-      access_token = client.auth_code.get_token(params[:code], :redirect_uri => redirect_uri)
-      puts "BEGIN /oauth2callback session id -> #{session.id}"
-      session[:access_token_string] = access_token.token
-      session[:access_token] = access_token
-      puts "/oauth2callback expires? == #{access_token.expires?}"
-      puts "/oauth2callback expired? == #{access_token.expired?}"
-      puts "/oauth2callback expires_at == #{Time.at(access_token.expires_at)}"
-      puts "/oauth2callback session -> #{session}"
-      ap session
-      puts "/oauth2callback session id -> #{session.id}"
-      # puts "/oauth2callback pool.get_session -> "
-      # ap $pool[session.id]
-      # parsed is a handy method on an OAuth2::Response object that will
-      # intelligently try and parse the response.body
-      @email = access_token.get('https://www.googleapis.com/oauth2/v3/userinfo').parsed['name']
-      # erb :success
-      # session = @session
-      puts "redirecting to /"
-      redirect '/'
-      # erb :homepage_modular
-    end
-
     private
+    def print_debug(context, session)
+      ap session
+      puts "#{context} session[:access_token].expires? == #{session[:access_token].expires?}"
+      puts "#{context} session[:access_token].expired? == #{session[:access_token].expired?}"
+      puts "#{context} Time.at(session[:access_token].expires_at) == #{Time.at(session[:access_token].expires_at)}"
+      puts "#{context} session -> #{session}"
+      ap session
+      puts "#{context} session id -> #{session.id}"
+      puts "#{context} userinfo -> #{session[:access_token].get('https://www.googleapis.com/oauth2/v3/userinfo').parsed}"
+    end
+
     def redirect_uri
       uri = URI.parse(request.url)
       uri.path = '/login/oauth2callback'
