@@ -5,18 +5,24 @@ require File.join(File.dirname(__FILE__),'../database', 'factory.rb')
 class Add_patient_routes < Clinicr_base
   include Config_factory
   get '/getAddPatientForm' do
-    fields_array = get_add_form_fields("test_id")
+    user_id = get_user_id
+    fields_array = get_add_form_fields(user_id)
     @fields_array_display = get_add_form_fields_display(fields_array)
     @fields_array_actual = get_add_form_fields_actual(fields_array)
     erb :add_patient_form
   end
 
   post '/doAddPatient' do
-    id = perform_add_patient("test_id",params)
+    id = perform_add_patient(get_user_id,params)
     "#{id}"
   end
 
   private
+    def get_user_id
+    user_id = session[:user].get("email")
+    return user_id
+  end
+  
   def get_add_form_fields(user_id)
     form_fields = config_instance.find_add_form_fields(user_id)
   end

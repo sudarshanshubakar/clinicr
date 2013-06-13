@@ -25,6 +25,8 @@ class Clinicr_base < Sinatra::Base
   end
 
   get '/' do
+    @user_name = session[:user].get("name")
+    @user_img_url = session[:user].get("picture")
     erb :homepage_modular
   end
   
@@ -42,6 +44,7 @@ class Clinicr_base < Sinatra::Base
     end
     puts "#{context} session keys -> #{session.keys}"
     puts "#{context} session id -> #{session.id}"
+    puts "#{context} session user ->>> #{session[:user]} "
   end
   
   def bypass_login_check?(action)

@@ -11,7 +11,7 @@ class Search_patient_routes < Clinicr_base
   end
   
   post '/performSearch' do
-    user_id = "test_id"
+    user_id = get_user_id
     search_criteria = params[:search_field]
     # @result_for_display = perform_search(search_criteria)
 
@@ -30,7 +30,12 @@ class Search_patient_routes < Clinicr_base
   end
 
 
-  private
+  private  
+  def get_user_id
+    user_id = session[:user].get("email")
+    return user_id
+  end
+  
   def perform_search(user_id, search_criteria)
     search = Search.new
     search_result = search.search(user_id, search_criteria)

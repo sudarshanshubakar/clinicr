@@ -1,11 +1,27 @@
 require 'redis'
 require_relative 'helpers/finders.rb'
+require_relative 'helpers/setup.rb'
+
 class Database_redis
-  include Detail_finder, Reference_finder
+  include Detail_finder, Reference_finder, Setup
   def initialize
     @redis = Redis.new
   end
 
+  def get_user_info(id)
+    user_info = @redis.hget "global:user_info", id
+    return user_info
+  end
+  
+  def update_user(id, details_hash)
+    @redis.hset "global:user_info", id, hash_to_json_string(details_hash)
+  end
+  
+  def add_user(id)
+    @redis.hset "global:user_info", id, ""
+    setup_user(id)
+  end
+  
   def user_collection_exists?
     result = true
     user_collection = @redis.keys("global:user_info")
