@@ -18,11 +18,11 @@ class Add_patient_routes < Clinicr_base
   end
 
   private
-    def get_user_id
+  def get_user_id
     user_id = session[:user].get("email")
     return user_id
   end
-  
+
   def get_add_form_fields(user_id)
     form_fields = config_instance.find_add_form_fields(user_id)
   end

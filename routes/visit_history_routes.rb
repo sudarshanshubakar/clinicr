@@ -9,7 +9,7 @@ class Visit_history_routes < Clinicr_base
 
   get '/getVisitHistory' do
     @id = params[:id]
-    user_id = "test_id"
+    user_id = get_user_id
     history_field_conflist = get_history_field_keys(user_id)
     @history_headers = get_history_headers(history_field_conflist)
     @history_keys = get_history_keys(history_field_conflist)
@@ -22,7 +22,7 @@ class Visit_history_routes < Clinicr_base
 
   get '/getUpdateHistoryForm' do
     @id = params["id"]
-    user_id = "test_id"
+    user_id = get_user_id
     history_field_conflist = get_history_field_keys(user_id)
     @fields_array_display = get_history_headers(history_field_conflist)
     @fields_array_actual = get_history_keys(history_field_conflist)
@@ -32,13 +32,18 @@ class Visit_history_routes < Clinicr_base
   end
 
   post '/updateHistory' do
-    user_id = "test_id"
+    user_id = get_user_id
     perform_update_history(user_id, params)
     "done"
   end
 
 
   private
+  def get_user_id
+    user_id = session[:user].get("email")
+    return user_id
+  end
+  
   def get_visit_history(user_id, id)
     visit_history = Visit.new
     visit_history_result = visit_history.get(user_id, id)

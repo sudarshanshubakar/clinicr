@@ -9,28 +9,33 @@ class Patient_details_routes < Clinicr_base
 
   get '/getDetails' do
     @id = params[:id]
-    user_id = "test_id"
+    user_id = get_user_id
     prepare_details_display(user_id)
     erb :details_page
   end
 
   get '/getUpdatePatientDetailsForm' do
     @id = params[:id]
-    user_id = "test_id"
+    user_id = get_user_id
     prepare_details_display(user_id)
     erb :update_patient_details_form
   end
 
   post '/updatePatient' do
-    user_id = "test_id"
+    user_id = get_user_id
     perform_update_patient(user_id, params)
   end
 
 
   private
+  def get_user_id
+    user_id = session[:user].get("email")
+    return user_id
+  end
+  
   def prepare_details_display(user_id)
-    details_field_keys = get_details_field_keys("test_id")
-    @details_for_display = get_details("test_id", @id)
+    details_field_keys = get_details_field_keys(user_id)
+    @details_for_display = get_details(user_id, @id)
     @details_labels = get_details_fields_display(details_field_keys)
     @details_keys = get_details_fields_actual(details_field_keys)
   end
@@ -38,6 +43,7 @@ class Patient_details_routes < Clinicr_base
   def get_details(user_id, patient_id)
     details = Details.new
     details_result = details.get(user_id, patient_id)
+    ap "Patient_details_routes.get_details -> #{details_result}"
     result = JSON.parse(details_result)
   end
 
