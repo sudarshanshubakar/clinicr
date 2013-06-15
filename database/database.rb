@@ -22,6 +22,15 @@ class Database_redis
     setup_user(id)
   end
   
+  def user_exists? (user_id)
+    result = false
+    user_id_list = @redis.hkeys("global:user_info")
+    if user_id_list.include? user_id then
+      result = true
+    end
+    return result    
+  end
+  
   def user_collection_exists?
     result = true
     user_collection = @redis.keys("global:user_info")
