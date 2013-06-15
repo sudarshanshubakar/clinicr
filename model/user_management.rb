@@ -9,12 +9,12 @@ class User_admin
   end
   
   def process_user(auth_provider_user_details_hash)
-    email = auth_provider_user_details_hash["email"]
-    # unless @db.user_collection_exists?
-      @db.add_user(email)
-    # end
-    @db.update_user email, format_user_details(auth_provider_user_details_hash)
-    user = User.new(email)
+    user_id = auth_provider_user_details_hash["email"]
+    unless @db.user_exists? user_id
+      @db.add_user(user_id)
+    end
+    @db.update_user user_id, format_user_details(auth_provider_user_details_hash)
+    user = User.new(user_id)
     return user
   end
   
