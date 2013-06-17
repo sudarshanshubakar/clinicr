@@ -139,13 +139,7 @@ $(document).ready(function() {
     $(result_location).css("display", "block");       
   }
   
-  function hideOverlay() {
-    var overlay_location = $(document).find("#overlayArea");
-    var result_location = $(document).find("#overlayContent");
-    $(result_location).html(""); 
-    $(overlay_location).css("display", "none");
-    $(result_location).css("display", "none");     
-  }
+
 
   function postAndAddToContent(url, formValues) {
     $.post(url, formValues,
@@ -174,4 +168,12 @@ $(document).ready(function() {
       }
 
     });
+    
+      function hideOverlay() {
+    var overlay_location = $(document).find("#overlayArea");
+    var result_location = $(document).find("#overlayContent");
+    $(result_location).html(""); 
+    $(overlay_location).css("display", "none");
+    $(result_location).css("display", "none");     
+  }
 
