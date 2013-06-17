@@ -216,3 +216,29 @@ background-color: beige;
   width:14%;
   vertical-align: middle;
 }
+
+#overlayArea {
+	display: none;
+	z-index: 100;
+	background: #000;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+  }
+  
+#overlayContent {
+	display: none;
+  position: relative;
+  z-index: 200;
+  width: 50%;
+  height: 40%;
+  background: #FFF;
+  color: #000;
+  top: 20%;
+  left: 25%;
+  border-radius: 1%;
+  }  
+  

@@ -34,6 +34,8 @@ $(document).ready(function() {
     postAndAddToLocation(url, formValues, location);
     visit_url = "/visitHistory/getVisitHistory?id="+id;
     getAndAddToLocation(visit_url, "#visit_history_section");
+    setTimeout(100);
+    hideOverlay();
   });
 
   $("#add_patient_form").submit(function(submitEvent) {
@@ -99,8 +101,51 @@ $(document).ready(function() {
     event.preventDefault();
     var url = $(this).attr("href");
     var location = $(this).attr("location");
-    getAndAddToLocation(url, location);
+    getAndOverlaytoLocation(url, location);
+    
+//        $(this).overlay({
+
+//        mask: 'blue',
+//        effect: 'apple',
+
+//        onBeforeLoad: function() {
+
+            // grab wrapper element inside content
+//            var wrap = this.getOverlay().find(".overlayContentWrap");
+
+            // load the page specified in the trigger
+//            wrap.load(this.getTrigger().attr("href"));
+//        }
+//      });
+    
   });
+  
+  function getAndOverlaytoLocation(url, location) {
+      $.get(url, function(returnHTML) {
+        var overlay_location = $(document).find("#overlayArea");
+        var result_location = $(document).find("#overlayContent");
+        $(result_location).html(returnHTML);
+        $(overlay_location).css("opacity", "0.7");
+
+        $(result_location).css("opacity", "1");
+        showOverlay();
+      });    
+  }
+  
+  function showOverlay() {
+    var overlay_location = $(document).find("#overlayArea");
+    var result_location = $(document).find("#overlayContent");  
+    $(overlay_location).css("display", "block");
+    $(result_location).css("display", "block");       
+  }
+  
+  function hideOverlay() {
+    var overlay_location = $(document).find("#overlayArea");
+    var result_location = $(document).find("#overlayContent");
+    $(result_location).html(""); 
+    $(overlay_location).css("display", "none");
+    $(result_location).css("display", "none");     
+  }
 
   function postAndAddToContent(url, formValues) {
     $.post(url, formValues,
