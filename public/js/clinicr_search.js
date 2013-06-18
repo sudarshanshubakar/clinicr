@@ -26,11 +26,8 @@ $(document).ready(function() {
     submitEvent.preventDefault();
     var id = $('#update_form input[name=\"id\"]').val();
     var url = $(this).attr("action");
-    // alert(url);
     var location = $(this).attr("location");
-    // alert(location);
     var formValues = $(this).serialize();
-    // alert(formValues);
     postAndAddToLocation(url, formValues, location);
     visit_url = "/visitHistory/getVisitHistory?id="+id;
     getAndAddToLocation(visit_url, "#visit_history_section");
@@ -46,8 +43,20 @@ $(document).ready(function() {
     $.post(url, formValues, function(returnHTML) {
       id = returnHTML;
       details_url = "/details/getDetails?id="+id;
-      // alert(details_url)
-      getAndAddToLocation(details_url, "#content_area");
+      history_url = "/visitHistory/getVisitHistory?id="+id;
+      getAndAddToLocation(details_url, "#patient_basic_information_section",function(){
+        //alert("shown details");
+        //setTimeout(1000);
+        getAndAddToLocation(history_url, "#visit_history_section", function() {
+          //alert("Patient successfully created.");
+          //setTimeout(200);
+        });
+        //alert("shown history");
+      });
+      
+      
+      //setTimeout(100);
+      hideOverlay();
     });
   });
   
@@ -67,7 +76,8 @@ $(document).ready(function() {
   $('body').on('click', '#links a',function(event){
     event.preventDefault();
     var url = $(this).attr("href");
-    getAndAddToLocation(url, "#content_area");
+    //getAndAddToLocation(url, "#content_area");
+    getAndOverlay(url);
   });
 
 
@@ -101,26 +111,10 @@ $(document).ready(function() {
     event.preventDefault();
     var url = $(this).attr("href");
     var location = $(this).attr("location");
-    getAndOverlaytoLocation(url, location);
-    
-//        $(this).overlay({
-
-//        mask: 'blue',
-//        effect: 'apple',
-
-//        onBeforeLoad: function() {
-
-            // grab wrapper element inside content
-//            var wrap = this.getOverlay().find(".overlayContentWrap");
-
-            // load the page specified in the trigger
-//            wrap.load(this.getTrigger().attr("href"));
-//        }
-//      });
-    
+    getAndOverlay(url);    
   });
   
-  function getAndOverlaytoLocation(url, location) {
+  function getAndOverlay(url) {
       $.get(url, function(returnHTML) {
         var overlay_location = $(document).find("#overlayArea");
         var result_location = $(document).find("#overlayContent");
@@ -155,10 +149,13 @@ $(document).ready(function() {
         });
       }
 
-      function getAndAddToLocation(url, location) {
+      function getAndAddToLocation(url, location, callback) {
         $.get(url, function(returnHTML) {
           addToLocation(returnHTML, location);
         });
+        if (typeof callback === "function") {
+          callback();
+        }
       }
 
       function addToLocation(html, location) {

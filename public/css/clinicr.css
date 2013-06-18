@@ -92,8 +92,8 @@ background-color: beige;
 .sub_section_title {
   text-align: center;
   text-decoration: underline;
-  margin-top:2%;
-  margin-bottom:2%;
+  top: 2%;
+  position: relative;
 }
 
 .section_title {
@@ -105,6 +105,8 @@ background-color: beige;
   position: absolute;
   width: 30%;
   left: 0.5%;
+  display: none;
+  height: 100%;
 }
 
 #patient_details_table {
@@ -113,8 +115,15 @@ background-color: beige;
   left: 1%;
 }
 
+#patient_details {
+  position: relative;
+  top: 5%;
+}
+
 #visit_history {
-  height: 80%;
+/*height: 80%;*/
+  top: 5%;
+  position: relative;
 }
 
 
@@ -182,29 +191,38 @@ background-color: beige;
 }
 
 #add_patient_form_holder {
-  position: absolute;
-  width: 30%;
-  height: 31%; 
+  width: 100%;
+  padding-top: 2%;
 }
 
 #add_patient_form_section {
-  margin-left: 1%;
+  padding-left: 15%;
+  padding-top: 5%;
+}
+
+#welcome_message {
+  position: fixed;
+  top: 30%;
+  left: 5%;
+  font-family: Century Gothic,sans-serif;
+  font-style: normal;
+  color: rgb(91, 123, 136);
+  width: 50%;
+}
+
+#welcome_message_title {
+  font-size: 200%;
+}
+
+#welcome_message_text {
+  font-size: 90%;
 }
 
 #login_with {
   position: fixed;
   top: 30%;
-  left: 30%;
-}
-
-#welcome_message {
-  position: fixed;
-  top: 17%;
-  left: 38%;
-  font-family: Ruboto,sans-serif;
-  font-style: italic;
-  color: blue;
-  font-size: 200%;
+  left: 55%;
+  vertical-align: middle;
 }
 
 #user_info {

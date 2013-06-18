@@ -1,7 +1,11 @@
-<div id="patient_basic_information_section" class="rounded_bordered_elements">
+
 <div class="sub_section_title">Detailed information
   </div>
+ 
   <div id="patient_details" >
+     <div id="details_hyperlinks" class="hyperlinks">
+        <a href="/details/getUpdatePatientDetailsForm?id=<%=@id%>" location="#patient_basic_information_section">Update</a>
+      </div>
   <table id="patient_details_table" class="borderless_table">
     <%
     @details_keys.each do |key|
@@ -14,13 +18,8 @@
   </table>
 </div>
 <br/>
-<div id="details_hyperlinks" class="hyperlinks">
-  <a href="/visitHistory/getVisitHistory?id=<%=@id%>" location="#visit_history_section">Show history</a>
-  &nbsp
-  <a href="/details/getUpdatePatientDetailsForm?id=<%=@id%>" location="#patient_basic_information_section">Update</a>
-</div>
+
 <br/>
 </div>
 <!--div id="record_visit_section" class="rounded_bordered_elements"></div-->
 <div id="record_visit_section" class="overlayed_elements"></div>
-<div id="visit_history_section" class="rounded_bordered_elements"></div>
