@@ -7,7 +7,10 @@ $(document).ready(function() {
     var url = $(this).attr("action");
     var formValues = $(this).serialize();
     postAndAddToLocation(url, formValues, "#search_result_area");
-    
+    var pat_bas_info_area =  $(document).find("#patient_basic_information_section");
+    $(pat_bas_info_area).css("display", "none");    
+    var visit_history_section =  $(document).find("#visit_history_section");
+    $(visit_history_section).css("display", "none");       
   });
 
   $("#update_form").submit(function(submitEvent) {
@@ -28,14 +31,15 @@ $(document).ready(function() {
     var url = $(this).attr("action");
     var formValues = $(this).serialize();
     var id = "";
+    var search_result_area =  $(document).find("#search_result_area");
+    $(search_result_area).css("display", "none");
     $.post(url, formValues, function(returnHTML) {
       id = returnHTML;
       details_url = "/details/getDetails?id="+id;
       history_url = "/visitHistory/getVisitHistory?id="+id;
-      getAndAddToLocation(details_url, "#patient_basic_information_section",function(){
-        getAndAddToLocation(history_url, "#visit_history_section", function() {
-        });
-      });
+      getAndAddToLocation_callback(function(){
+        getAndAddToLocation(history_url, "#visit_history_section");
+      }, details_url, "#patient_basic_information_section");
       hideOverlay();
     });
   });
