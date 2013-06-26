@@ -1,8 +1,3 @@
-  // $(document).on("load", "#search_result_area", function() {
-  //   alert("here");
-  //   // this.stickyTableHeaders();
-  // });
-
 $(document).ready(function() {
   
 
@@ -10,16 +5,9 @@ $(document).ready(function() {
   $("#search").submit(function(submitEvent) {
     submitEvent.preventDefault();
     var url = $(this).attr("action");
-    // alert(url);
     var formValues = $(this).serialize();
-    // $.post(url, formValues,
-    //   function(returnHTML) {
-    //     addToLocation(returnHTML,"#content_area");
-    //     var table = $(document).find("#search_result");
-    //     table.stickyTableHeaders();
-    //     alert(table);
-    //   });
-    postAndAddToContent(url, formValues);
+    postAndAddToLocation(url, formValues, "#search_result_area");
+    
   });
 
   $("#update_form").submit(function(submitEvent) {
@@ -45,17 +33,9 @@ $(document).ready(function() {
       details_url = "/details/getDetails?id="+id;
       history_url = "/visitHistory/getVisitHistory?id="+id;
       getAndAddToLocation(details_url, "#patient_basic_information_section",function(){
-        //alert("shown details");
-        //setTimeout(1000);
         getAndAddToLocation(history_url, "#visit_history_section", function() {
-          //alert("Patient successfully created.");
-          //setTimeout(200);
         });
-        //alert("shown history");
       });
-      
-      
-      //setTimeout(100);
       hideOverlay();
     });
   });
@@ -68,15 +48,13 @@ $(document).ready(function() {
     $.post(url, formValues, function(returnHTML) {
       id = returnHTML;
       details_url = "/details/getDetails?id="+id;
-      // alert(details_url)
-      getAndAddToLocation(details_url, "#content_area");
+      getAndAddToLocation(details_url, "#patient_basic_information_section");
     });
   });
 
   $('body').on('click', '#links a',function(event){
     event.preventDefault();
     var url = $(this).attr("href");
-    //getAndAddToLocation(url, "#content_area");
     getAndOverlay(url);
   });
 
@@ -84,7 +62,23 @@ $(document).ready(function() {
   $('body').on('click', '#search_result_hyperlink a',function(event){
     event.preventDefault();
     var url = $(this).attr("href");
-    getAndAddToLocation(url, "#content_area");
+    getAndAddToLocation_callback(function(url) {
+      var params = url.split("?")[1];
+      var each_param = params.split("&")
+      var id = "";
+      for (var i=0, len=each_param.length; i < len; i++) {
+        var kv_pair = each_param[i].split("=");
+        var key = kv_pair[0];
+        if (key == "id") {
+          id = kv_pair[1];
+          break;
+        }
+      }
+      var url = "/visitHistory/getVisitHistory?id="+id;
+      getAndAddToLocation(url, "#visit_history_section");
+    },url, "#patient_basic_information_section");
+    var search_result_area =  $(document).find("#search_result_area");
+    $(search_result_area).css("display", "none");
   });
 
   $('body').on('click', '#show_history_hyperlink a',function(event){
@@ -97,7 +91,7 @@ $(document).ready(function() {
   $('body').on('click', '#cancel_update_patient_details' ,function(event){
     event.preventDefault();
     var url = $(this).attr("href");
-    getAndAddToLocation(url, "#content_area");
+    getAndAddToLocation(url, "#patient_basic_information_section");
   });
   
   $('body').on('click', '#details_hyperlinks a',function(event){
@@ -110,7 +104,7 @@ $(document).ready(function() {
   $('body').on('click', '#show_new_visit_form a',function(event){
     event.preventDefault();
     var url = $(this).attr("href");
-    var location = $(this).attr("location");
+    //var location = $(this).attr("location");
     getAndOverlay(url);    
   });
   
@@ -135,12 +129,12 @@ $(document).ready(function() {
   
 
 
-  function postAndAddToContent(url, formValues) {
-    $.post(url, formValues,
-      function(returnHTML) {
-        addToLocation(returnHTML,"#content_area");
-      });
-    }
+  //function postAndAddToContent(url, formValues) {
+    //$.post(url, formValues,
+      //function(returnHTML) {
+        //addToLocation(returnHTML,"#content_area");
+      //});
+    //}
 
     function postAndAddToLocation(url, formValues, location) {
       $.post(url, formValues,
@@ -149,13 +143,17 @@ $(document).ready(function() {
         });
       }
 
-      function getAndAddToLocation(url, location, callback) {
+      function getAndAddToLocation_callback(callback, url, location ) {
+        getAndAddToLocation(url, location);
+        if (typeof callback === "function") {
+          callback(url);
+        }
+      }
+      
+      function getAndAddToLocation(url, location) {
         $.get(url, function(returnHTML) {
           addToLocation(returnHTML, location);
-        });
-        if (typeof callback === "function") {
-          callback();
-        }
+        });        
       }
 
       function addToLocation(html, location) {

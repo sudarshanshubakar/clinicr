@@ -5,9 +5,10 @@ require 'awesome_print'
 class Clinicr_base < Sinatra::Base
 
   before do
+    # require 'debugger'; debugger
     action = request.path_info
 
-    print_debug_info("BEFORE in Clinicr_base")
+    # print_debug_info("BEFORE in Clinicr_base")
     
     unless bypass_login_check? action then
       unless session[:access_token] == nil then

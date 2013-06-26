@@ -1,12 +1,13 @@
 require 'test/unit'
-require_relative '../add.rb'
-require_relative '../details.rb'
-require 'redgreen'
+require_relative '../model/add.rb'
+require_relative '../model/details.rb'
+#require 'redgreen'
 require 'json'
 
 class Test_add_patient < MiniTest::Unit::TestCase
 
   def test_add
+    # require 'debugger'; debugger
     params = Hash.new
     params["name"] = "test_Add_name"
     params["age"] = "test_ADD_age"
