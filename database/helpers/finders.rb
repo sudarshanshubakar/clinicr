@@ -20,7 +20,7 @@ module Detail_finder
       hash_result["id"] = key
       matching_values << hash_result
     end
-    return matching_values
+    return matching_values.uniq
   end
 end
 
@@ -37,6 +37,6 @@ module Reference_finder
       hash_result["id"] = patient_id
       matching_values << hash_result
     end
-    return matching_values
+    return matching_values.uniq
   end
 end

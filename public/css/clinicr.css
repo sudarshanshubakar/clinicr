@@ -1,3 +1,6 @@
+html {
+  height:100%;
+}
 body {
   font-family: Helvetica, sans-serif;
 }
@@ -62,7 +65,7 @@ body {
 .general_table {
   border-collapse: collapse;
   position: relative;
-  width: 98%;
+  width: 100%;
   left: 1%;
   height: 90%;
 }
@@ -150,6 +153,8 @@ background-color: beige;
   display: table;
   width: 100%;
   background-color: #6698FF;
+        
+      position: relative;
 }
 .scrollable_table thead th {
   width: 20%;
@@ -158,8 +163,8 @@ background-color: beige;
 
 .scrollable_table tbody {
   display: block;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
+
   height: 100%;
 }
 
