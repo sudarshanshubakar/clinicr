@@ -127,6 +127,7 @@ $(document).ready(function() {
   });
   
   function getAndOverlay(url) {
+    showOverlay();
       $.get(url, function(returnHTML) {
         var overlay_location = $(document).find("#overlayArea");
         var result_location = $(document).find("#overlayContent");
@@ -134,7 +135,7 @@ $(document).ready(function() {
         $(overlay_location).css("opacity", "0.7");
 
         $(result_location).css("opacity", "1");
-        showOverlay();
+        //showOverlay();
       });    
   }
   
