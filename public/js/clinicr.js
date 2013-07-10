@@ -119,21 +119,17 @@ $(document).ready(function() {
 
         function getAndOverlay(url) {
           showOverlay();
-          $(overlay_location).css("opacity", "0.7");
-          $(result_location).css("opacity", "1");
-
           $.get(url, function(returnHTML) {
-            var overlay_location = $(document).find("#overlayArea");
             var result_location = $(document).find("#overlayContent");
             $(result_location).html(returnHTML);
-
-            //showOverlay();
           });
         }
 
         function showOverlay() {
           var overlay_location = $(document).find("#overlayArea");
           var result_location = $(document).find("#overlayContent");
+          $(overlay_location).css("opacity", "0.7");
+          $(result_location).css("opacity", "1");          
           $(overlay_location).css("display", "block");
           $(result_location).css("display", "block");
         }
