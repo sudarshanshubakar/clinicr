@@ -3,7 +3,7 @@
   <link rel="stylesheet" type="text/css" href="/css/clinicr.css" />
   <script	type="text/javascript"	src="/js/jquery-1.9.1.js"></script>
   <script type="text/javascript" src="/js/clinicr.js"></script>
-  
+  <title>ClinicR</title>
 </head>
 <body>
   <div id="static_area">
@@ -12,7 +12,7 @@
     </div>
       <div id="user_info">
         <img src="<%=@user_img_url%>"/>
-        <%=@user_name%>
+        Welcome <%=@user_name%>
       </div>
     <div id="search_form" class="static_area_content">
       <form method="post" action="/search/performSearch" name="search" id="search">
