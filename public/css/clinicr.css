@@ -7,14 +7,10 @@ body {
 
 #static_area {
   position:fixed;
-  /*  border-style:solid;
-  border-width:0.15em;*/
   width:100%;
   height:5%;
   top:0;
   left: 0;
-  /*  border-color: blue;
-  border-radius: 0.5em;*/
   background-color : #6698FF;
   color: white;
 }
@@ -22,10 +18,6 @@ body {
 #content_area {
   position:fixed;
   top:7%;
-  /*border-style:solid;
-  border-width:0.15em;
-  border-color: blue;
-  border-radius: 0.5em;*/
   width:98%;
   height:90%;
 }
@@ -85,18 +77,12 @@ body {
 }
 
 .rounded_bordered_elements {
-/*  border-style:solid;
-border-width:0.15em;
-border-color: blue;*/
-border-radius: 0.5em;
-background-color: beige;
+  border-radius: 0.5em;
+  background-color: beige;
 }
 
 .sub_section_title {
   text-align: center;
-/*  text-decoration: underline;
-  top: 2%;
-position: relative;*/
   border-radius: 0.5em 0.5em 0em 0em;
   padding: 0.5%;
   background-color: #6698FF;
@@ -127,7 +113,6 @@ position: relative;*/
 }
 
 #visit_history {
-/*height: 80%;*/
   top: 5%;
   position: relative;
 }
@@ -138,7 +123,6 @@ position: relative;*/
   width: 69%;
   left: 31%;
   height: 100%;
-  /*border: 1px solid;*/
   display: none;
 }
 
@@ -156,8 +140,8 @@ position: relative;*/
   display: table;
   width: 100%;
   background-color: #6698FF;
-        
-      position: relative;
+
+  position: relative;
 }
 .scrollable_table thead th {
   width: 20%;
@@ -186,16 +170,9 @@ position: relative;*/
   width: 30%;
   top: 32%;
   left: 0.5%;
-  /*border: 1px solid;*/
   height: 71%;
   display: none;
 }
-
-/*#update_history_form {
-  position: relative;
-  width: 98%;
-  left: 1%;
-}*/
 
 #overlay_form_table {
   width: 98%;
@@ -204,7 +181,7 @@ position: relative;*/
 }
 
 .hyperlinks {
- margin-left: 2%; 
+  margin-left: 2%;
 }
 
 #add_patient_form_holder {
@@ -253,19 +230,19 @@ position: relative;*/
 }
 
 #overlayArea {
-	display: none;
-	z-index: 100;
-	background: #000;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	text-align: center;
-  }
-  
+  display: none;
+  z-index: 100;
+  background: #000;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+}
+
 #overlayContent {
-	display: none;
+  display: none;
   position: relative;
   z-index: 200;
   width: 50%;
@@ -275,5 +252,5 @@ position: relative;*/
   top: 20%;
   left: 25%;
   border-radius: 0.5em;
-  }  
-  
+}
+
