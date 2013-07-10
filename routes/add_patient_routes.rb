@@ -9,7 +9,14 @@ class Add_patient_routes < Clinicr_base
     fields_array = get_add_form_fields(user_id)
     @fields_array_display = get_add_form_fields_display(fields_array)
     @fields_array_actual = get_add_form_fields_actual(fields_array)
-    erb :add_patient_form
+    @title = "Add patient"
+    @field_type = "input"
+    @form_action = "/addPatient/doAddPatient"
+    @form_id = "add_patient_form"
+    @post_submit_location = "add_patient_form"
+    @submit_button_text = "Add patient"
+    # erb :add_patient_form
+    erb :overlay_form
   end
 
   post '/doAddPatient' do

@@ -21,14 +21,26 @@ class Visit_history_routes < Clinicr_base
   end
 
   get '/getUpdateHistoryForm' do
-    @id = params["id"]
+    
     user_id = get_user_id
     history_field_conflist = get_history_field_keys(user_id)
     @fields_array_display = get_history_headers(history_field_conflist)
     @fields_array_actual = get_history_keys(history_field_conflist)
     @fields_array_display.delete("Date")
+    @title = "Record this visit"
+    @field_type = "textarea"
+    @form_action = "/visitHistory/updateHistory"
+    @form_id = "update_form"
+    @post_submit_location = "update_form"
+    @submit_button_text = "Record visit" 
+    id = params["id"]
+    hidden_field = Hash.new
+    hidden_field[:name] = "id"
+    hidden_field[:value] = id
+    @hidden_fields = [hidden_field]
     # puts "fields #{@fields_array}"
-    erb :update_history_form
+    # erb :update_history_form
+    erb :overlay_form
   end
 
   post '/updateHistory' do

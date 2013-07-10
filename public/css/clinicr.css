@@ -94,9 +94,12 @@ background-color: beige;
 
 .sub_section_title {
   text-align: center;
-  text-decoration: underline;
+/*  text-decoration: underline;
   top: 2%;
-  position: relative;
+position: relative;*/
+  border-radius: 0.5em 0.5em 0em 0em;
+  padding: 0.5%;
+  background-color: #6698FF;
 }
 
 .section_title {
@@ -188,10 +191,16 @@ background-color: beige;
   display: none;
 }
 
-#update_history_form {
+/*#update_history_form {
   position: relative;
   width: 98%;
   left: 1%;
+}*/
+
+#overlay_form_table {
+  width: 98%;
+  position: relative;
+  left: 14%;
 }
 
 .hyperlinks {
